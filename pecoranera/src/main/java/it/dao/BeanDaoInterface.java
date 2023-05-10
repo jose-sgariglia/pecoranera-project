@@ -9,7 +9,7 @@ public interface BeanDaoInterface<T> {
 	
 	public boolean doDelete(int id) throws SQLException;
 	
-	public T doRetriveByKey(int id) throws SQLException;
+	public T doRetrieveByKey(int id) throws SQLException;
 	
-	public Collection<T> doRetriveAll() throws SQLException;
+	public Collection<T> doRetrieveAll() throws SQLException;
 }
