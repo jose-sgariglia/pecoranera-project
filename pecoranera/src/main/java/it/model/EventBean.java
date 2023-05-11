@@ -3,7 +3,7 @@ package it.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Event implements Serializable {
+public class EventBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -16,7 +16,7 @@ public class Event implements Serializable {
 	private int max_ticket;
 	
 	
-	public Event() {
+	public EventBean() {
 		this.id_event = -1;
 		this.date = null;
 		this.name = "";

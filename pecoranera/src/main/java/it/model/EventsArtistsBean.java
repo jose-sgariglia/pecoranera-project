@@ -2,33 +2,33 @@ package it.model;
 
 import java.io.Serializable;
 
-public class EventsArtists implements Serializable {
+public class EventsArtistsBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Event event;
-	private Artist artist;
+	private EventBean event;
+	private ArtistBean artist;
 	private String role;
 	
-	public EventsArtists() {
+	public EventsArtistsBean() {
 		this.event = null;
 		this.artist = null;
 		this.role = "";
 	}
 
-	public Event getEvent() {
+	public EventBean getEvent() {
 		return event;
 	}
 
-	public void setEvent(Event event) {
+	public void setEvent(EventBean event) {
 		this.event = event;
 	}
 
-	public Artist getArtist() {
+	public ArtistBean getArtist() {
 		return artist;
 	}
 
-	public void setArtist(Artist artist) {
+	public void setArtist(ArtistBean artist) {
 		this.artist = artist;
 	}
 

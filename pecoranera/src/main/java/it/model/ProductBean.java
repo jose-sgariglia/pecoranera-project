@@ -2,7 +2,7 @@ package it.model;
 
 import java.io.Serializable;
 
-public class Product implements Serializable {
+public class ProductBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -10,9 +10,9 @@ public class Product implements Serializable {
 	private String name;
 	private String description;
 	private double price;
-	private ProductType type;
+	private ProductTypeBean type;
 	
-	public Product() {
+	public ProductBean() {
 		this.id_product = -1;
 		this.name = "";
 		this.description = "";
@@ -52,11 +52,11 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
-	public ProductType getType() {
+	public ProductTypeBean getType() {
 		return type;
 	}
 
-	public void setType(ProductType type) {
+	public void setType(ProductTypeBean type) {
 		this.type = type;
 	}
 	

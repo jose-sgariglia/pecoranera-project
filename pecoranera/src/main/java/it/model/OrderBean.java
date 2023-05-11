@@ -3,7 +3,7 @@ package it.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Order implements Serializable {
+public class OrderBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -11,10 +11,10 @@ public class Order implements Serializable {
 	private int tickets;
 	private double price;
 	private Date date;
-	private User user;
-	private Event event;
+	private UserBean user;
+	private EventBean event;
 	
-	public Order() {
+	public OrderBean() {
 		this.id_order = -1;
 		this.tickets = 0;
 		this.price = 0.0;
@@ -55,19 +55,19 @@ public class Order implements Serializable {
 		this.date = date;
 	}
 
-	public User getUser() {
+	public UserBean getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserBean user) {
 		this.user = user;
 	}
 
-	public Event getEvent() {
+	public EventBean getEvent() {
 		return event;
 	}
 
-	public void setEvent(Event event) {
+	public void setEvent(EventBean event) {
 		this.event = event;
 	}
 	

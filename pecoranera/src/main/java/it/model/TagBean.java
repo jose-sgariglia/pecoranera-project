@@ -2,14 +2,14 @@ package it.model;
 
 import java.io.Serializable;
 
-public class Tag implements Serializable {
+public class TagBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private int id_tag;
 	private String name;
 	
-	public Tag() {
+	public TagBean() {
 		this.id_tag = -1;
 		this.name = "";
 	}

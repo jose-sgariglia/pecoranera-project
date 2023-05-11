@@ -2,7 +2,7 @@ package it.model;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +16,7 @@ public class User implements Serializable {
 	private String username;
 	private Role role;
 
-	public User() {
+	public UserBean() {
 		this.id_user = -1;
 		this.email = "";
 		this.password = "";

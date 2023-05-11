@@ -2,7 +2,7 @@ package it.model;
 
 import java.io.Serializable;
 
-public class Artist implements Serializable {
+public class ArtistBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -10,7 +10,7 @@ public class Artist implements Serializable {
 	private String name;
 	private String description;
 	
-	public Artist() {
+	public ArtistBean() {
 		this.id_artist = -1;
 		this.name = "";
 		this.description = "";
