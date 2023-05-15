@@ -174,18 +174,18 @@ CREATE TABLE IF NOT EXISTS `pecoranera_db`.`order` (
   `tickets` INT UNSIGNED NOT NULL,
   `price` DECIMAL(5,2) UNSIGNED NOT NULL,
   `date` DATETIME NOT NULL,
-  `user` INT NOT NULL,
-  `event` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  `id_event` INT NOT NULL,
   PRIMARY KEY (`id_order`),
-  INDEX `fk_order_1` (`user` ASC) VISIBLE,
-  INDEX `fk_order_2` (`event` ASC) VISIBLE,
+  INDEX `fk_order_1` (`id_user` ASC) VISIBLE,
+  INDEX `fk_order_2` (`id_event` ASC) VISIBLE,
   CONSTRAINT `fk_order_1`
-    FOREIGN KEY (`user`)
+    FOREIGN KEY (`id_user`)
     REFERENCES `pecoranera_db`.`user` (`id_user`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_order_2`
-    FOREIGN KEY (`event`)
+    FOREIGN KEY (`id_event`)
     REFERENCES `pecoranera_db`.`event` (`id_event`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -215,11 +215,11 @@ CREATE TABLE IF NOT EXISTS `pecoranera_db`.`product` (
   `name` VARCHAR(45) NOT NULL,
   `description` MEDIUMTEXT NOT NULL,
   `price` DECIMAL(5,2) NOT NULL,
-  `type` INT NOT NULL,
+  `id_type` INT NOT NULL,
   PRIMARY KEY (`id_product`),
-  INDEX `fk_product_1_idx` (`type` ASC) VISIBLE,
+  INDEX `fk_product_1_idx` (`id_type` ASC) VISIBLE,
   CONSTRAINT `fk_product_1`
-    FOREIGN KEY (`type`)
+    FOREIGN KEY (`id_type`)
     REFERENCES `pecoranera_db`.`product_type` (`id_type`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
