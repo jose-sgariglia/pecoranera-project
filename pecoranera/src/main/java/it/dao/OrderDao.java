@@ -1,9 +1,7 @@
 package it.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Collection;
+import java.sql.*;
+import java.util.*;
 import javax.naming.*;
 import javax.sql.*;
 
@@ -85,17 +83,83 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 		
 		return (result != 0);
 	}
-
+ 
 	@Override
-	public OrderBean doRetrieveByKey(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public synchronized OrderBean doRetrieveByKey(int id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		OrderBean order = null;
+		String selectSQL = "SELECT * FROM " + OrderDao.TABLE_NAME + "WHERE id_order = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(selectSQL);
+			preStm.setInt(1, id);
+			
+			ResultSet rs = preStm.executeQuery();
+			
+			while(rs.next()) {
+				order.setId_order(rs.getInt("id_order"));
+				order.setTickets(rs.getInt("tickets"));
+				order.setPrice(rs.getDouble("price"));
+				order.setDate(new java.util.Date(rs.getDate("date").getTime()));
+				order.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
+				order.setEvent(new EventDao().doRetrieveByKey(rs.getInt("id_event")));
+			}
+			
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null) 
+					conn.close();
+			}
+		}
+		
+		return order;
 	}
 
 	@Override
 	public Collection<OrderBean> doRetrieveAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		Collection<OrderBean> orders = new LinkedList<OrderBean>();
+		
+		String selectSQL = "SELECT * FROM " + OrderDao.TABLE_NAME;
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(selectSQL);
+			
+			ResultSet rs = preStm.executeQuery();
+			
+			while(rs.next()) {
+				OrderBean order = new OrderBean();
+				
+				order.setId_order(rs.getInt("id_order"));
+				order.setTickets(rs.getInt("tickets"));
+				order.setPrice(rs.getDouble("price"));
+				order.setDate(new java.util.Date(rs.getDate("date").getTime()));
+				order.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
+				order.setEvent(new EventDao().doRetrieveByKey(rs.getInt("id_event")));
+			
+				orders.add(order);
+			}
+			
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null) 
+					conn.close();
+			}
+		}
+		
+		return orders;
 	}
 
 }
