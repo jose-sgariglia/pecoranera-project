@@ -11,18 +11,12 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 
 	private static final String TABLE_NAME = "order";
 	
-	private static DataSource ds;
+	private DataSource ds = null;
 	
-	static {
-		try {
-			Context initCtx = new InitialContext();
-			Context envCtx = (Context) initCtx.lookup("java:comp/env");
+	public OrderDao(DataSource ds) {
+		this.ds = ds;
 		
-			ds = (DataSource) envCtx.lookup("jdbc/pecoranera_db");
-			
-		} catch (NamingException e) {
-			System.out.println("Error:" + e.getMessage());
-		}
+		System.out.println("DataSource Product Model creation....");
 	}
 	
 	@Override
