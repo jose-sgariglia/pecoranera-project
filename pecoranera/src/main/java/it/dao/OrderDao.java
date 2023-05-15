@@ -122,7 +122,7 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 	}
 
 	@Override
-	public Collection<OrderBean> doRetrieveAll() throws SQLException {
+	public synchronized Collection<OrderBean> doRetrieveAll() throws SQLException {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
