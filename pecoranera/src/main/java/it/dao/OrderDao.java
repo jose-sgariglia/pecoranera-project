@@ -1,9 +1,13 @@
 package it.dao;
 
-import java.sql.*;
-import java.util.*;
-import javax.naming.*;
-import javax.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
+
+import javax.sql.DataSource;
 
 import it.model.OrderBean;
 
@@ -26,17 +30,17 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 		PreparedStatement preStm = null;
 		
 		String insertSQL = "INSERT INTO " + OrderDao.TABLE_NAME 
-				+ " (id_order, tickets, price, date, user, event) VALUES (?, ?, ?, ?, ?)";;
+				+ " (tickets, price, date, user, event) VALUES (?, ?, ?, ?, ?)";;
 	
 		try {
 			conn = ds.getConnection();
 			preStm = conn.prepareStatement(insertSQL);
-			preStm.setInt(1, item.getId_order());
-			preStm.setInt(2, item.getTickets());
-			preStm.setDouble(3, item.getPrice());
-			preStm.setDate(4, new java.sql.Date(item.getDate().getTime()));
-			preStm.setInt(5, item.getUser().getUser_id());
-			preStm.setInt(6, item.getEvent().getId_event());
+			
+			preStm.setInt(1, item.getTickets());
+			preStm.setDouble(2, item.getPrice());
+			preStm.setDate(3, new java.sql.Date(item.getDate().getTime()));
+			preStm.setInt(4, item.getUser().getUser_id());
+			preStm.setInt(5, item.getEvent().getId_event());
 			
 			preStm.executeUpdate();
 			conn.commit();
@@ -98,7 +102,7 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 				order.setTickets(rs.getInt("tickets"));
 				order.setPrice(rs.getDouble("price"));
 				order.setDate(new java.util.Date(rs.getDate("date").getTime()));
-				order.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
+				order.setUser(new UserDao(ds).doRetrieveByKey(rs.getInt("id_user")));
 				order.setEvent(new EventDao().doRetrieveByKey(rs.getInt("id_event")));
 			}
 			
@@ -137,7 +141,7 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 				order.setTickets(rs.getInt("tickets"));
 				order.setPrice(rs.getDouble("price"));
 				order.setDate(new java.util.Date(rs.getDate("date").getTime()));
-				order.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
+				order.setUser(new UserDao(ds).doRetrieveByKey(rs.getInt("id_user")));
 				order.setEvent(new EventDao().doRetrieveByKey(rs.getInt("id_event")));
 			
 				orders.add(order);

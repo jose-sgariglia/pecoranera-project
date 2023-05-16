@@ -1,11 +1,13 @@
 package it.dao;
 
-import java.sql.*;
-import java.util.*;
-import javax.naming.*;
-import javax.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
+import javax.sql.DataSource;
 
-import it.model.OrderBean;
 import it.model.UserBean;
 import it.model.UserBean.Role;
 
@@ -27,18 +29,17 @@ public class UserDao implements BeanDaoInterface<UserBean> {
 		PreparedStatement preStm = null;
 		
 		String insertSQL = "INSERT INTO " + UserDao.TABLE_NAME 
-				+ "(id_user, email, password, username, role) VALUES "
+				+ "(email, password, username, role) VALUES "
 				+ "(?, ?, ?, ?, ?)";
 		
 		try {
 			conn = ds.getConnection();
 			preStm = conn.prepareStatement(insertSQL);
 			
-			preStm.setInt(1, item.getUser_id());
-			preStm.setString(2, item.getEmail());
-			preStm.setString(3, item.getPassword());
-			preStm.setString(4, item.getUsername());
-			preStm.setString(5, item.getRole().toString());
+			preStm.setString(1, item.getEmail());
+			preStm.setString(2, item.getPassword());
+			preStm.setString(3, item.getUsername());
+			preStm.setString(4, item.getRole().toString());
 			
 			preStm.executeUpdate();
 			conn.commit();
@@ -93,6 +94,7 @@ public class UserDao implements BeanDaoInterface<UserBean> {
 		try {
 			conn = ds.getConnection();
 			preStm = conn.prepareStatement(selectSQL);
+			
 			preStm.setInt(1, id);
 			
 			ResultSet rs = preStm.executeQuery();
