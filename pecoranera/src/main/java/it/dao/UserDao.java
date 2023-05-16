@@ -88,7 +88,7 @@ public class UserDao implements BeanDaoInterface<UserBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		UserBean user = new UserBean;
+		UserBean user = new UserBean();
 		String selectSQL = "SELECT * FROM " + UserDao.TABLE_NAME + "WHERE id_user = ?";
 		
 		try {
