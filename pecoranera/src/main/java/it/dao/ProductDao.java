@@ -20,7 +20,7 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 	public ProductDao(DataSource ds) {
 		this.ds = ds;
 
-		System.out.println("DataSource User Model creation....");
+		System.out.println("DataSource Product Model creation....");
 	}
 
 	@Override
