@@ -6,7 +6,7 @@ public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	enum Role {
+	public static enum Role {
 		ADMIN, USER
 	}
 	
