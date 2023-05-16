@@ -125,7 +125,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while (rs.next()) {
-				ProductTypeBean productType = null;
+				ProductTypeBean productType = new ProductTypeBean();
 				
 				productType.setId_type(rs.getInt("id_type"));
 				productType.setName(rs.getString("name"));

@@ -89,7 +89,7 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		ProductBean product = null;
+		ProductBean product = new ProductBean();
 		String selectSQL = "SELECT * FROM " + ProductDao.TABLE_NAME + "WHERE id_product = ?";
 		
 		try {
@@ -138,7 +138,7 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while (rs.next()) {
-				ProductBean product = null;
+				ProductBean product = new ProductBean();
 				
 				product.setId_product(rs.getInt("id_product"));
 				product.setName(rs.getString("name"));

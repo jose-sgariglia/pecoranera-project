@@ -87,7 +87,7 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		OrderBean order = null;
+		OrderBean order = new OrderBean();
 		String selectSQL = "SELECT * FROM " + OrderDao.TABLE_NAME + "WHERE id_order = ?";
 		
 		try {
