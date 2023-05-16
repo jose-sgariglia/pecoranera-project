@@ -17,6 +17,7 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 
 	public ArtistDao(DataSource ds) {
 		this.ds = ds;
+		System.out.println("DataSource Artist model creation...");
 	}
 	
 	@Override
@@ -92,6 +93,7 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
+				bean.setId_artist(rs.getInt("id_artist"));
 				bean.setName(rs.getString("name"));
 				bean.setDescription(rs.getString("description"));
 			}
@@ -126,6 +128,7 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 			while (rs.next()) {
 				ArtistBean bean = new ArtistBean();
 
+				bean.setId_artist(rs.getInt("id_artist"));
 				bean.setName(rs.getString("name"));
 				bean.setDescription(rs.getString("description"));
 				artists.add(bean);

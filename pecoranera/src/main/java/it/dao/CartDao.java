@@ -17,6 +17,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 
 	public CartDao(DataSource ds) {
 		this.ds = ds;
+		System.out.println("DataSource Cart model creation...");
 	}
 	
 	@Override
@@ -91,6 +92,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
+				bean.setId_cart(rs.getInt("id_cart"));
 				bean.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
 			}
 
@@ -124,6 +126,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 			while (rs.next()) {
 				CartBean bean = new CartBean();
 
+				bean.setId_cart(rs.getInt("id_cart"));
 				bean.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
 				carts.add(bean);
 			}
