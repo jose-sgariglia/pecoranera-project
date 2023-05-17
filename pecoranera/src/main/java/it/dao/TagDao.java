@@ -147,4 +147,32 @@ public class TagDao implements BeanDaoInterface<TagBean> {
 		return tags;
 	}
 
+	@Override
+	public void doUpdate(TagBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+
+		String updateSQL = "UPDATE " + TagDao.TABLE_NAME
+				+ " name = ? WHERE id_tag = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+
+			preStm.setString(1, item.getName());
+			preStm.setInt(2, item.getId_tag());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
+	}
+
 }

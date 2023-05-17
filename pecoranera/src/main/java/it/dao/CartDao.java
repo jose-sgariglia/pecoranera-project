@@ -93,7 +93,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 
 			while (rs.next()) {
 				bean.setId_cart(rs.getInt("id_cart"));
-				bean.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
+				bean.setUser(new UserDao(ds).doRetrieveByKey(rs.getInt("id_user")));
 			}
 
 		} finally {
@@ -127,7 +127,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 				CartBean bean = new CartBean();
 
 				bean.setId_cart(rs.getInt("id_cart"));
-				bean.setUser(new UserDao().doRetrieveByKey(rs.getInt("id_user")));
+				bean.setUser(new UserDao(ds).doRetrieveByKey(rs.getInt("id_user")));
 				carts.add(bean);
 			}
 
@@ -141,5 +141,10 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 			}
 		}
 		return carts;
+	}
+
+	@Override
+	public void doUpdate(CartBean item) throws SQLException {
+		// Implementazione non utile	
 	}
 }

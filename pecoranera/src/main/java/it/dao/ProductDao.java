@@ -39,7 +39,7 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 			preStm.setString(1, item.getName());
 			preStm.setString(2, item.getDescription());
 			preStm.setDouble(3, item.getPrice());
-			preStm.setString(4, item.getType().getName());
+			preStm.setInt(4, item.getType().getId_type());
 			
 			preStm.executeUpdate();
 			conn.commit();
@@ -161,6 +161,38 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 		}
 		
 		return products;
+	}
+
+	@Override
+	public void doUpdate(ProductBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		String updateSQL = "UPDATE " + ProductDao.TABLE_NAME 
+				+ "name = ?, description = ?, price = ?, id_type = ?"
+				+ " WHERE id_type = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+
+			preStm.setString(1, item.getName());
+			preStm.setString(2, item.getDescription());
+			preStm.setDouble(3, item.getPrice());
+			preStm.setInt(4, item.getType().getId_type());
+			preStm.setInt(5, item.getId_product());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
 	}
 
 }

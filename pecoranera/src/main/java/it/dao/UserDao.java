@@ -160,4 +160,36 @@ public class UserDao implements BeanDaoInterface<UserBean> {
 		return users;
 	}
 
+	@Override
+	public void doUpdate(UserBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		String updateSQL = "UPDATE " + UserDao.TABLE_NAME 
+				+ " email = ?, password = ?, username = ?, role = ?"
+				+ " WHERE id_user = ?"; 		
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+			
+			preStm.setString(1, item.getEmail());
+			preStm.setString(2, item.getPassword());
+			preStm.setString(3, item.getUsername());
+			preStm.setString(4, item.getRole().toString());
+			preStm.setInt(5, item.getUser_id());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}		
+	}
+
 }

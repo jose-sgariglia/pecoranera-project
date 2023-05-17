@@ -145,4 +145,32 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 		return productTypes;
 	}
 
+	@Override
+	public void doUpdate(ProductTypeBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		String updateSQL = "UPDATE " + ProductTypeDao.TABLE_NAME 
+				+ "name = ? WHERE id_type = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+			
+			preStm.setString(1, item.getName());
+			preStm.setInt(2, item.getId_type());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}		
+	}
+
 }

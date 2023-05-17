@@ -145,4 +145,33 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 		}
 		return artists;
 	}
+
+	@Override
+	public void doUpdate(ArtistBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+
+		String updateSQL = "UPDATE " + ArtistDao.TABLE_NAME 
+				+ "SET name = ?, description = ?"
+				+ "WHERE id_artist = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+			
+			preStm.setString(1, item.getName());
+			preStm.setString(2, item.getDescription());
+			preStm.setInt(3, item.getId_artist());
+
+			preStm.executeUpdate();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
+	}
 }
