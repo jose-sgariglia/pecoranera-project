@@ -19,7 +19,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 	public ProductTypeDao(DataSource ds) {
 		this.ds = ds;
 		
-		System.out.println("DataSource Product Model creation....");
+		System.out.println("DataSource Product Type Model creation....");
 	}
 	
 	@Override
