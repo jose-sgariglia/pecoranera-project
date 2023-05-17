@@ -31,7 +31,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, cart.getUser().getUser_id());
+			preparedStatement.setInt(1, cart.getUser().getUserId());
 
 			preparedStatement.executeUpdate();
 

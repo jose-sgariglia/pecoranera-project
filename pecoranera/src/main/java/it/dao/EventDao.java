@@ -99,7 +99,7 @@ public class EventDao implements BeanDaoInterface<EventBean> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				bean.setId_event(rs.getInt("id_event"));
+				bean.setEventId(rs.getInt("id_event"));
 				bean.setDate(rs.getDate("date"));
 				bean.setName(rs.getString("name"));
 				bean.setName(rs.getString("description"));
@@ -138,7 +138,7 @@ public class EventDao implements BeanDaoInterface<EventBean> {
 			while (rs.next()) {
 				EventBean bean = new EventBean();
 
-				bean.setId_event(rs.getInt("id_event"));
+				bean.setEventId(rs.getInt("id_event"));
 				bean.setDate(rs.getDate("date"));
 				bean.setName(rs.getString("name"));
 				bean.setName(rs.getString("description"));
@@ -179,7 +179,7 @@ public class EventDao implements BeanDaoInterface<EventBean> {
 			preStm.setDouble(4, item.getPrice());
 			preStm.setInt(5, item.getAvailable_tickets());
 			preStm.setInt(6,  item.getMax_tickets());
-			preStm.setInt(7, item.getId_event());
+			preStm.setInt(7, item.getEventId());
 
 			preStm.executeUpdate();
 		} finally {

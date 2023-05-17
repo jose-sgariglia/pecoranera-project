@@ -39,8 +39,8 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 			preStm.setInt(1, item.getTickets());
 			preStm.setDouble(2, item.getPrice());
 			preStm.setDate(3, new java.sql.Date(item.getDate().getTime()));
-			preStm.setInt(4, item.getUser().getUser_id());
-			preStm.setInt(5, item.getEvent().getId_event());
+			preStm.setInt(4, item.getUser().getUserId());
+			preStm.setInt(5, item.getEvent().getEventId());
 			
 			preStm.executeUpdate();
 			conn.commit();
@@ -98,7 +98,7 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while(rs.next()) {
-				order.setId_order(rs.getInt("id_order"));
+				order.setOrderId(rs.getInt("id_order"));
 				order.setTickets(rs.getInt("tickets"));
 				order.setPrice(rs.getDouble("price"));
 				order.setDate(new java.util.Date(rs.getDate("date").getTime()));
@@ -137,7 +137,7 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 			while(rs.next()) {
 				OrderBean order = new OrderBean();
 				
-				order.setId_order(rs.getInt("id_order"));
+				order.setOrderId(rs.getInt("id_order"));
 				order.setTickets(rs.getInt("tickets"));
 				order.setPrice(rs.getDouble("price"));
 				order.setDate(new java.util.Date(rs.getDate("date").getTime()));
@@ -176,9 +176,9 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 			preStm.setInt(1, item.getTickets());
 			preStm.setDouble(2, item.getPrice());
 			preStm.setDate(3, new java.sql.Date(item.getDate().getTime()));
-			preStm.setInt(4, item.getUser().getUser_id());
-			preStm.setInt(5, item.getEvent().getId_event());
-			preStm.setInt(6, item.getId_order());
+			preStm.setInt(4, item.getUser().getUserId());
+			preStm.setInt(5, item.getEvent().getEventId());
+			preStm.setInt(6, item.getOrderId());
 			
 			preStm.executeUpdate();
 			conn.commit();

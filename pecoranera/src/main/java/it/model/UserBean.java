@@ -24,11 +24,11 @@ public class UserBean implements Serializable {
 		this.role = null;
 	}
 
-	public int getUser_id() {
+	public int getUserId() {
 		return id_user;
 	}
 
-	public void setUser_id(int id_user) {
+	public void setUserId(int id_user) {
 		this.id_user = id_user;
 	}
 

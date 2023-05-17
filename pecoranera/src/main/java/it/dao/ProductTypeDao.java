@@ -94,7 +94,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while (rs.next()) {
-				productType.setId_type(rs.getInt("id_type"));
+				productType.setTypeId(rs.getInt("id_type"));
 				productType.setName(rs.getString("name"));
 			}
 			
@@ -127,7 +127,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 			while (rs.next()) {
 				ProductTypeBean productType = new ProductTypeBean();
 				
-				productType.setId_type(rs.getInt("id_type"));
+				productType.setTypeId(rs.getInt("id_type"));
 				productType.setName(rs.getString("name"));
 			
 				productTypes.add(productType);
@@ -158,7 +158,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 			preStm = conn.prepareStatement(updateSQL);
 			
 			preStm.setString(1, item.getName());
-			preStm.setInt(2, item.getId_type());
+			preStm.setInt(2, item.getTypeId());
 			
 			preStm.executeUpdate();
 			conn.commit();

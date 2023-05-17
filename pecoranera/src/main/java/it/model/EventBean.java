@@ -27,12 +27,12 @@ public class EventBean implements Serializable {
 	}
 
 
-	public int getId_event() {
+	public int getEventId() {
 		return id_event;
 	}
 
 
-	public void setId_event(int id_event) {
+	public void setEventId(int id_event) {
 		this.id_event = id_event;
 	}
 

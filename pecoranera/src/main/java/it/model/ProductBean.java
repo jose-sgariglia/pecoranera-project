@@ -20,11 +20,11 @@ public class ProductBean implements Serializable {
 		this.type = null;
 	}
 
-	public int getId_product() {
+	public int getProductId() {
 		return id_product;
 	}
 
-	public void setId_product(int id_product) {
+	public void setProductId(int id_product) {
 		this.id_product = id_product;
 	}
 
