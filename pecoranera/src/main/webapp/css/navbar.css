@@ -1,0 +1,126 @@
+@import "variables.css";
+
+body{
+    margin: 0;
+    --nav-height: 4.8rem;
+}
+
+nav{
+    background-color: var(--dark-background);
+    color: var(--main-color);
+    padding: 2vh 2.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.logo{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo span, .logo img{
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    -ms-user-drag: none;
+}
+
+#logo-name{
+    font-size: 2.8rem;
+    font-family: "League Gothic", serif;
+}
+
+
+#logo-text{
+    font-size: 1.2rem;
+    font-family: var(--header-font);
+}
+
+.logo>img{
+    height: var(--nav-height);
+    display: inline-block;
+}
+
+.logo div {
+    align-items: baseline;
+}
+
+.nav-button{
+    display: none;
+}
+
+nav ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    width: 60vw;
+    height: var(--nav-height);
+}
+
+nav ul li{
+    display: grid;
+}
+
+.nav-links{
+    display: block;
+    margin-bottom: 0;
+    margin-top: auto;
+    text-decoration: none;
+    color: var(--main-color);
+    flex: 1;
+    font-size: 1.6rem;
+    font-family: var(--header-font);
+    transition: color .5s;
+}
+
+.nav-links:hover{
+    color: var(--neon-light);
+}
+
+.nav-links.active_link{
+    color: var(--neon-color) !important;
+    text-shadow: var(--neon-effect);
+}
+
+#nav-icons{
+    display: grid;
+    grid-template-columns:  1fr 2fr 1fr;
+}
+
+#nav-icons a:first-child{
+    grid-column-start: 1;
+}
+
+#nav-icons a:last-child{
+    grid-column-start: 3;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .logo span{
+        display: none;
+    }
+
+    nav ul{
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+        width: 50vw;
+        height: auto;
+    }
+}

@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro&family=Lato&family=League+Gothic&display=swap');
+
+:root{
+    --main-color: #E8E9F3;
+    --page-background: #1a1a1a;
+    --dark-background: #121212;
+    --neon-color: #DEAADB;
+    --neon-light: #8332AC;
+    
+    --header-font: "Advent Pro", sans-serif;
+    --main-font: "Lato", sans-serif;
+    --neon-effect: 0 0 10px var(--neon-light), 0 0 5px var(--neon-light), 1px 1px var(--neon-light), -1px -1px var(--neon-light), 1px -1px var(--neon-light), -1px 1px var(--neon-light);
+}
