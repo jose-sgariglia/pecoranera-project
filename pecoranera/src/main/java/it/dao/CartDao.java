@@ -144,6 +144,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 	}
 
 	@Override
+	// Non viene implementato perché l'unico attributo è user_id che non può essere modificato
 	public void doUpdate(CartBean item) throws SQLException {
 		// Implementazione non utile	
 	}
