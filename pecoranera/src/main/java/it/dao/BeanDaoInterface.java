@@ -7,7 +7,7 @@ public interface BeanDaoInterface<T> {
 	
 	public void doSave(T item) throws SQLException;
 	
-	public void doUpdate(T item) throws SQLException;
+	public void doUpdate(T item) throws SQLException, UnsupportedOperationException;
 	
 	public boolean doDelete(int id) throws SQLException;
 	
