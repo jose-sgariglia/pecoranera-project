@@ -10,7 +10,6 @@ public class CartBean implements Serializable {
 
 	private int id_cart;
 	private UserBean user;
-	private int tickets;
 	private Map<EventBean, Integer> events;
 	
 	public CartBean() {
@@ -33,14 +32,6 @@ public class CartBean implements Serializable {
 
 	public void setUser(UserBean user) {
 		this.user = user;
-	}
-	
-	public int getTickets() {
-		return tickets;
-	}
-
-	public void setTickets(int tickets) {
-		this.tickets = tickets;
 	}
 
 	public Map<EventBean, Integer> getEvents() {
