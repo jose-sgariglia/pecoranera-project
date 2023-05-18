@@ -8,19 +8,15 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
+import it.model.OrderBean;
 import it.model.ProductBean;
 
-public class ProductDao implements BeanDaoInterface<ProductBean> {
+public class ProductDao extends BeanDaoAbstract<ProductBean> {
 	
 	private static final String TABLE_NAME = "product";
-	
-	private DataSource ds = null;
-	
-	
+		
 	public ProductDao(DataSource ds) {
-		this.ds = ds;
-
-		System.out.println("DataSource Product Model creation....");
+		super(ds);
 	}
 
 	@Override

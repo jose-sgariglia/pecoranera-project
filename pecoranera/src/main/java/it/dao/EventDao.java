@@ -11,15 +11,14 @@ import java.sql.Date;
 import java.util.LinkedList;
 
 import it.model.EventBean;
+import it.model.OrderBean;
 
-public class EventDao implements BeanDaoInterface<EventBean> {
+public class EventDao extends BeanDaoAbstract<EventBean> {
 	
 	private static final String TABLE_NAME = "event";
-	private DataSource ds = null;
 
 	public EventDao(DataSource ds) {
-		this.ds = ds;
-		System.out.println("DataSource Event model creation...");
+		super(ds);
 	}
 	
 	@Override

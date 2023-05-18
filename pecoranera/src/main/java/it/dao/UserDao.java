@@ -8,19 +8,16 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
+import it.model.OrderBean;
 import it.model.UserBean;
 import it.model.UserBean.Role;
 
-public class UserDao implements BeanDaoInterface<UserBean> {
+public class UserDao extends BeanDaoAbstract<UserBean> {
 
 	private static final String TABLE_NAME = "user";
 	
-	private DataSource ds = null;
-	
 	public UserDao(DataSource ds) {
-		this.ds = ds;
-		
-		System.out.println("DataSource User Model creation....");
+		super(ds);
 	}
 	
 	@Override

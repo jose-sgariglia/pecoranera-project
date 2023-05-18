@@ -8,19 +8,15 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
+import it.model.OrderBean;
 import it.model.TagBean;
 
-public class TagDao implements BeanDaoInterface<TagBean> {
+public class TagDao extends BeanDaoAbstract<TagBean> {
 	
 	private static final String TABLE_NAME = "tag";
 	
-	private DataSource ds = null;
-	
-	
 	public TagDao(DataSource ds) {
-		this.ds = ds;
-		
-		System.out.println("DataSource Tag Model creation....");
+		super(ds);
 	}
 
 	@Override

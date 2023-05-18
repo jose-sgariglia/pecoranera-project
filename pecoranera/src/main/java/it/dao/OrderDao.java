@@ -9,18 +9,16 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import it.model.CartBean;
 import it.model.OrderBean;
 
-public class OrderDao implements BeanDaoInterface<OrderBean> {
+public class OrderDao extends BeanDaoAbstract<OrderBean> {
 
 	private static final String TABLE_NAME = "order";
 	
-	private DataSource ds = null;
 	
 	public OrderDao(DataSource ds) {
-		this.ds = ds;
-		
-		System.out.println("DataSource Product Model creation....");
+		super(ds);
 	}
 	
 	@Override

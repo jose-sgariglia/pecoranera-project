@@ -8,16 +8,14 @@ import java.util.Collection;
 import javax.sql.DataSource;
 import java.util.LinkedList;
 
+import it.model.ArtistBean;
 import it.model.CartBean;
 
-public class CartDao implements BeanDaoInterface<CartBean> {
-	
+public class CartDao extends BeanDaoAbstract<CartBean> {
 	private static final String TABLE_NAME = "cart";
-	private DataSource ds = null;
 
 	public CartDao(DataSource ds) {
-		this.ds = ds;
-		System.out.println("DataSource Cart model creation...");
+		super(ds);
 	}
 	
 	@Override
@@ -144,8 +142,7 @@ public class CartDao implements BeanDaoInterface<CartBean> {
 	}
 
 	@Override
-	// Non viene implementato perché l'unico attributo è user_id che non può essere modificato
-	public void doUpdate(CartBean item) throws SQLException {
-		// Implementazione non utile	
+	public void doUpdate(CartBean item) throws UnsupportedOperationException {
+		throw new UnsupportedOperationException("Method not supported for this model");		
 	}
 }

@@ -10,14 +10,12 @@ import java.util.LinkedList;
 
 import it.model.ArtistBean;
 
-public class ArtistDao implements BeanDaoInterface<ArtistBean> {
+public class ArtistDao extends BeanDaoAbstract<ArtistBean> {
 	
 	private static final String TABLE_NAME = "artist";
-	private DataSource ds = null;
 
 	public ArtistDao(DataSource ds) {
-		this.ds = ds;
-		System.out.println("DataSource Artist model creation...");
+		super(ds);
 	}
 	
 	@Override
