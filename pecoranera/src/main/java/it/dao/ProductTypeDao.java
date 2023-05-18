@@ -47,34 +47,6 @@ public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 	}
 
 	@Override
-	public synchronized boolean doDelete(int id) throws SQLException {
-		Connection conn = null;
-		PreparedStatement preStm = null;
-
-		int result = 0;
-		String deleteSQL = "DELETE FROM " + ProductTypeDao.TABLE_NAME + " WHERE id_type = ?";
-		
-		try {
-			conn = ds.getConnection();
-			preStm = conn.prepareStatement(deleteSQL);
-			
-			preStm.setInt(1, id);
-
-			result = preStm.executeUpdate();
-		} finally {
-			try {
-				if (preStm != null)
-					preStm.close();
-			} finally {
-				if (conn != null)
-					conn.close();
-			}
-		}
-		
-		return (result != 0);
-	}
-
-	@Override
 	public synchronized ProductTypeBean doRetrieveByKey(int id) throws SQLException {
 		Connection conn = null;
 		PreparedStatement preStm = null;
