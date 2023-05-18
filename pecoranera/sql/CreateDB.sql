@@ -240,9 +240,9 @@ DROP TABLE IF EXISTS `product_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product_type` (
-  `id_type` int NOT NULL,
+  `id_product_type` int NOT NULL,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id_type`),
+  PRIMARY KEY (`id_product_type`),
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -1,6 +1,8 @@
 package it.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class ProductTypeBean implements Serializable {
 
@@ -8,10 +10,20 @@ public class ProductTypeBean implements Serializable {
 	
 	private int id_type;
 	private String name;
+	private Collection<ProductBean> products;
 	
 	public ProductTypeBean() {
 		this.id_type = -1;
 		this.name = "";
+		this.products = new LinkedList<ProductBean>();
+	}
+
+	public Collection<ProductBean> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Collection<ProductBean> products) {
+		this.products = products;
 	}
 
 	public int getTypeId() {

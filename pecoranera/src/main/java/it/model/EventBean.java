@@ -1,7 +1,11 @@
 package it.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class EventBean implements Serializable {
 
@@ -14,6 +18,9 @@ public class EventBean implements Serializable {
 	private double price;
 	private int available_tickets;
 	private int max_tickets;
+	private Date cancellation;
+	private Collection<TagBean> tags;
+	private Map<ArtistBean, String> artists;
 	
 	
 	public EventBean() {
@@ -24,6 +31,9 @@ public class EventBean implements Serializable {
 		this.price = 0.0;
 		this.available_tickets = 0;
 		this.max_tickets = 0;
+		this.cancellation = null;
+		this.tags = new LinkedList<TagBean>();
+		this.artists = new HashMap<ArtistBean, String>();
 	}
 
 
@@ -96,5 +106,33 @@ public class EventBean implements Serializable {
 		this.max_tickets = max_tickets;
 	}
 	
+	public Collection<TagBean> getTags() {
+		return tags;
+	}
+
+
+	public void setTags(Collection<TagBean> tags) {
+		this.tags = tags;
+	}
+
+
+	public Map<ArtistBean, String> getArtists() {
+		return artists;
+	}
+
+
+	public void setArtists(Map<ArtistBean, String> artists) {
+		this.artists = artists;
+	}
+
+
+	public Date getCancellation() {
+		return cancellation;
+	}
+
+
+	public void setCancellation(Date cancellation) {
+		this.cancellation = cancellation;
+	}
 	
 }
