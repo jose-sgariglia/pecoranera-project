@@ -22,7 +22,6 @@ public class EventBean implements Serializable {
 	private Collection<TagBean> tags;
 	private Map<ArtistBean, String> artists;
 	
-	
 	public EventBean() {
 		this.id_event = -1;
 		this.date = null;

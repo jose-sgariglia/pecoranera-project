@@ -117,7 +117,7 @@ public class TagDao extends BeanDaoAbstract<TagBean> {
 	}
 
 	@Override
-	public void doUpdate(TagBean item) throws SQLException {
+	public synchronized void doUpdate(TagBean item) throws SQLException {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 
