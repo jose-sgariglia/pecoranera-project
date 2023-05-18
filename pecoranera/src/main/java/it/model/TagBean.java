@@ -14,11 +14,11 @@ public class TagBean implements Serializable {
 		this.name = "";
 	}
 
-	public int getId_tag() {
+	public int getTagId() {
 		return id_tag;
 	}
 
-	public void setId_tag(int id_tag) {
+	public void setTagId(int id_tag) {
 		this.id_tag = id_tag;
 	}
 

@@ -93,7 +93,7 @@ public class TagDao implements BeanDaoInterface<TagBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while(rs.next()) {
-				tag.setId_tag(rs.getInt("id_tag"));
+				tag.setTagId(rs.getInt("id_tag"));
 				tag.setName(rs.getString("name"));
 			}
 			
@@ -128,7 +128,7 @@ public class TagDao implements BeanDaoInterface<TagBean> {
 			while(rs.next()) {
 				TagBean tag = new TagBean();
 				
-				tag.setId_tag(rs.getInt("id_tag"));
+				tag.setTagId(rs.getInt("id_tag"));
 				tag.setName(rs.getString("name"));
 				
 				tags.add(tag);
@@ -145,6 +145,34 @@ public class TagDao implements BeanDaoInterface<TagBean> {
 		}
 				
 		return tags;
+	}
+
+	@Override
+	public void doUpdate(TagBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+
+		String updateSQL = "UPDATE " + TagDao.TABLE_NAME
+				+ " name = ? WHERE id_tag = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+
+			preStm.setString(1, item.getName());
+			preStm.setInt(2, item.getTagId());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
 	}
 
 }

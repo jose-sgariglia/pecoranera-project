@@ -14,7 +14,7 @@ public class CartBean implements Serializable {
 		this.user = null;
 	}
 
-	public int getId_cart() {
+	public int getCartId() {
 		return id_cart;
 	}
 

@@ -100,7 +100,7 @@ public class UserDao implements BeanDaoInterface<UserBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while(rs.next()) {
-				user.setUser_id(rs.getInt("id_user"));
+				user.setUserId(rs.getInt("id_user"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));
 				user.setUsername(rs.getString("username"));
@@ -138,7 +138,7 @@ public class UserDao implements BeanDaoInterface<UserBean> {
 			while(rs.next()) {
 				UserBean user = new UserBean();
 				
-				user.setUser_id(rs.getInt("id_user"));
+				user.setUserId(rs.getInt("id_user"));
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));
 				user.setUsername(rs.getString("username"));
@@ -158,6 +158,38 @@ public class UserDao implements BeanDaoInterface<UserBean> {
 		}
 		
 		return users;
+	}
+
+	@Override
+	public void doUpdate(UserBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		String updateSQL = "UPDATE " + UserDao.TABLE_NAME 
+				+ " email = ?, password = ?, username = ?, role = ?"
+				+ " WHERE id_user = ?"; 		
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+			
+			preStm.setString(1, item.getEmail());
+			preStm.setString(2, item.getPassword());
+			preStm.setString(3, item.getUsername());
+			preStm.setString(4, item.getRole().toString());
+			preStm.setInt(5, item.getUserId());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}		
 	}
 
 }

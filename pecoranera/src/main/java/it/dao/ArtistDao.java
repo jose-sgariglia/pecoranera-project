@@ -93,7 +93,7 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				bean.setId_artist(rs.getInt("id_artist"));
+				bean.setArtistId(rs.getInt("id_artist"));
 				bean.setName(rs.getString("name"));
 				bean.setDescription(rs.getString("description"));
 			}
@@ -128,7 +128,7 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 			while (rs.next()) {
 				ArtistBean bean = new ArtistBean();
 
-				bean.setId_artist(rs.getInt("id_artist"));
+				bean.setArtistId(rs.getInt("id_artist"));
 				bean.setName(rs.getString("name"));
 				bean.setDescription(rs.getString("description"));
 				artists.add(bean);
@@ -144,5 +144,34 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 			}
 		}
 		return artists;
+	}
+
+	@Override
+	public void doUpdate(ArtistBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+
+		String updateSQL = "UPDATE " + ArtistDao.TABLE_NAME 
+				+ "SET name = ?, description = ?"
+				+ "WHERE id_artist = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+			
+			preStm.setString(1, item.getName());
+			preStm.setString(2, item.getDescription());
+			preStm.setInt(3, item.getArtistId());
+
+			preStm.executeUpdate();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
 	}
 }

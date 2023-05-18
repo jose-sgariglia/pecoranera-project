@@ -14,11 +14,11 @@ public class ProductTypeBean implements Serializable {
 		this.name = "";
 	}
 
-	public int getId_type() {
+	public int getTypeId() {
 		return id_type;
 	}
 
-	public void setId_type(int id_type) {
+	public void setTypeId(int id_type) {
 		this.id_type = id_type;
 	}
 

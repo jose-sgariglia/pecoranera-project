@@ -19,7 +19,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 	public ProductTypeDao(DataSource ds) {
 		this.ds = ds;
 		
-		System.out.println("DataSource Product Model creation....");
+		System.out.println("DataSource Product Type Model creation....");
 	}
 	
 	@Override
@@ -94,7 +94,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while (rs.next()) {
-				productType.setId_type(rs.getInt("id_type"));
+				productType.setTypeId(rs.getInt("id_type"));
 				productType.setName(rs.getString("name"));
 			}
 			
@@ -127,7 +127,7 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 			while (rs.next()) {
 				ProductTypeBean productType = new ProductTypeBean();
 				
-				productType.setId_type(rs.getInt("id_type"));
+				productType.setTypeId(rs.getInt("id_type"));
 				productType.setName(rs.getString("name"));
 			
 				productTypes.add(productType);
@@ -143,6 +143,34 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 			}
 		}
 		return productTypes;
+	}
+
+	@Override
+	public void doUpdate(ProductTypeBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		String updateSQL = "UPDATE " + ProductTypeDao.TABLE_NAME 
+				+ "name = ? WHERE id_type = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+			
+			preStm.setString(1, item.getName());
+			preStm.setInt(2, item.getTypeId());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}		
 	}
 
 }

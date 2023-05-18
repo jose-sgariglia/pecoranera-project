@@ -39,7 +39,7 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 			preStm.setString(1, item.getName());
 			preStm.setString(2, item.getDescription());
 			preStm.setDouble(3, item.getPrice());
-			preStm.setString(4, item.getType().getName());
+			preStm.setInt(4, item.getType().getTypeId());
 			
 			preStm.executeUpdate();
 			conn.commit();
@@ -101,7 +101,7 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 			ResultSet rs = preStm.executeQuery();
 			
 			while (rs.next()) {
-				product.setId_product(rs.getInt("id_product"));
+				product.setProductId(rs.getInt("id_product"));
 				product.setName(rs.getString("name"));
 				product.setDescription(rs.getString("description"));
 				product.setPrice(rs.getDouble("price"));
@@ -140,7 +140,7 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 			while (rs.next()) {
 				ProductBean product = new ProductBean();
 				
-				product.setId_product(rs.getInt("id_product"));
+				product.setProductId(rs.getInt("id_product"));
 				product.setName(rs.getString("name"));
 				product.setDescription(rs.getString("description"));
 				product.setPrice(rs.getDouble("price"));
@@ -161,6 +161,38 @@ public class ProductDao implements BeanDaoInterface<ProductBean> {
 		}
 		
 		return products;
+	}
+
+	@Override
+	public void doUpdate(ProductBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+		
+		String updateSQL = "UPDATE " + ProductDao.TABLE_NAME 
+				+ "name = ?, description = ?, price = ?, id_type = ?"
+				+ " WHERE id_type = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(updateSQL);
+
+			preStm.setString(1, item.getName());
+			preStm.setString(2, item.getDescription());
+			preStm.setDouble(3, item.getPrice());
+			preStm.setInt(4, item.getType().getTypeId());
+			preStm.setInt(5, item.getProductId());
+			
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
 	}
 
 }
