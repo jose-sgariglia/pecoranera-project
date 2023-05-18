@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import javax.sql.DataSource;
 
 import it.model.OrderBean;
+import it.model.ProductBean;
+import it.model.TagBean;
 import it.model.UserBean;
 import it.model.UserBean.Role;
 
@@ -74,6 +76,14 @@ public class UserDao extends BeanDaoAbstract<UserBean> {
 				user.setPassword(rs.getString("password"));
 				user.setUsername(rs.getString("username"));
 				user.setRole(rs.getString("role") == "admin" ? Role.ADMIN : Role.USER);
+				
+				TagDao td = new TagDao(this.ds);
+				Collection<TagBean> tags = td.doRetrieveAll().stream().filter(t -> t.getTagId() == id).toList();
+				user.setTags(tags);
+				
+				OrderDao od = new OrderDao(this.ds);
+				Collection<OrderBean> orders = od.doRetrieveAll().stream().filter(o -> o.getOrderId() == id).toList();
+				user.setOrders(orders);
 			}
 			
 		} finally {
@@ -112,6 +122,14 @@ public class UserDao extends BeanDaoAbstract<UserBean> {
 				user.setPassword(rs.getString("password"));
 				user.setUsername(rs.getString("username"));
 				user.setRole(rs.getString("role") == "admin" ? Role.ADMIN : Role.USER);
+				
+				TagDao td = new TagDao(this.ds);
+				Collection<TagBean> tags = td.doRetrieveAll().stream().filter(t -> t.getTagId() == user.getUserId()).toList();
+				user.setTags(tags);
+				
+				OrderDao od = new OrderDao(this.ds);
+				Collection<OrderBean> orders = od.doRetrieveAll().stream().filter(o -> o.getOrderId() == user.getUserId()).toList();
+				user.setOrders(orders);
 			
 				users.add(user);
 			}

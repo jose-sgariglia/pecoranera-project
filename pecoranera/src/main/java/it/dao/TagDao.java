@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import javax.sql.DataSource;
 
 import it.model.OrderBean;
+import it.model.ProductBean;
 import it.model.TagBean;
 
 public class TagDao extends BeanDaoAbstract<TagBean> {
