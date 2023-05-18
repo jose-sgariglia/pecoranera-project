@@ -9,18 +9,16 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
+import it.model.CartBean;
 import it.model.OrderBean;
 
-public class OrderDao implements BeanDaoInterface<OrderBean> {
+public class OrderDao extends BeanDaoAbstract<OrderBean> {
 
 	private static final String TABLE_NAME = "order";
 	
-	private DataSource ds = null;
 	
 	public OrderDao(DataSource ds) {
-		this.ds = ds;
-		
-		System.out.println("DataSource Product Model creation....");
+		super(ds);
 	}
 	
 	@Override
@@ -53,33 +51,6 @@ public class OrderDao implements BeanDaoInterface<OrderBean> {
 					conn.close();
 			}
 		}
-	}
-
-	@Override
-	public synchronized boolean doDelete(int id) throws SQLException {
-		Connection conn = null;
-		PreparedStatement preStm = null;
-		
-		int result = 0;
-		String deleteSQL = "DELETE FROM " + OrderDao.TABLE_NAME + " WHERE id_order = ?";
-		
-		try {
-			conn = ds.getConnection();
-			preStm = conn.prepareStatement(deleteSQL);
-			preStm.setInt(1, id);
-			
-			result = preStm.executeUpdate();
-		} finally {
-			try {
-				if (preStm != null)
-					preStm.close();
-			} finally {
-				if (conn != null)
-					conn.close();
-			}
-		}
-		
-		return (result != 0);
 	}
  
 	@Override

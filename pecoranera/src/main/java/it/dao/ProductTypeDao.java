@@ -8,18 +8,15 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
+import it.model.OrderBean;
 import it.model.ProductTypeBean;
 
-public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
+public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 
 	private static final String TABLE_NAME = "product_type";
 	
-	private DataSource ds = null;
-	
 	public ProductTypeDao(DataSource ds) {
-		this.ds = ds;
-		
-		System.out.println("DataSource Product Type Model creation....");
+		super(ds);
 	}
 	
 	@Override
@@ -47,34 +44,6 @@ public class ProductTypeDao implements BeanDaoInterface<ProductTypeBean> {
 					conn.close();
 			}
 		}
-	}
-
-	@Override
-	public synchronized boolean doDelete(int id) throws SQLException {
-		Connection conn = null;
-		PreparedStatement preStm = null;
-
-		int result = 0;
-		String deleteSQL = "DELETE FROM " + ProductTypeDao.TABLE_NAME + " WHERE id_type = ?";
-		
-		try {
-			conn = ds.getConnection();
-			preStm = conn.prepareStatement(deleteSQL);
-			
-			preStm.setInt(1, id);
-
-			result = preStm.executeUpdate();
-		} finally {
-			try {
-				if (preStm != null)
-					preStm.close();
-			} finally {
-				if (conn != null)
-					conn.close();
-			}
-		}
-		
-		return (result != 0);
 	}
 
 	@Override

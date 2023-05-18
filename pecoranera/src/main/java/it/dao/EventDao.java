@@ -11,15 +11,14 @@ import java.sql.Date;
 import java.util.LinkedList;
 
 import it.model.EventBean;
+import it.model.OrderBean;
 
-public class EventDao implements BeanDaoInterface<EventBean> {
+public class EventDao extends BeanDaoAbstract<EventBean> {
 	
 	private static final String TABLE_NAME = "event";
-	private DataSource ds = null;
 
 	public EventDao(DataSource ds) {
-		this.ds = ds;
-		System.out.println("DataSource Event model creation...");
+		super(ds);
 	}
 	
 	@Override
@@ -52,34 +51,6 @@ public class EventDao implements BeanDaoInterface<EventBean> {
 					connection.close();
 			}
 		}
-	}
-	
-	@Override
-	public synchronized boolean doDelete(int id) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		int result = 0;
-
-		String deleteSQL = "DELETE FROM " + EventDao.TABLE_NAME + " WHERE id_event = ?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, id);
-
-			result = preparedStatement.executeUpdate();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return (result != 0);
 	}
 	
 	@Override

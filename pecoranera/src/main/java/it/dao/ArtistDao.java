@@ -10,14 +10,12 @@ import java.util.LinkedList;
 
 import it.model.ArtistBean;
 
-public class ArtistDao implements BeanDaoInterface<ArtistBean> {
+public class ArtistDao extends BeanDaoAbstract<ArtistBean> {
 	
 	private static final String TABLE_NAME = "artist";
-	private DataSource ds = null;
 
 	public ArtistDao(DataSource ds) {
-		this.ds = ds;
-		System.out.println("DataSource Artist model creation...");
+		super(ds);
 	}
 	
 	@Override
@@ -48,33 +46,6 @@ public class ArtistDao implements BeanDaoInterface<ArtistBean> {
 		}
 	}
 	
-	@Override
-	public synchronized boolean doDelete(int id) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		int result = 0;
-
-		String deleteSQL = "DELETE FROM " + ArtistDao.TABLE_NAME + " WHERE id_artist = ?";
-
-		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, id);
-
-			result = preparedStatement.executeUpdate();
-
-		} finally {
-			try {
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return (result != 0);
-	}
 	
 	@Override
 	public synchronized ArtistBean doRetrieveByKey(int id) throws SQLException {

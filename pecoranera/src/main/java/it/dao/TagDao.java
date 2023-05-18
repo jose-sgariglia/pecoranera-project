@@ -8,19 +8,15 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
+import it.model.OrderBean;
 import it.model.TagBean;
 
-public class TagDao implements BeanDaoInterface<TagBean> {
+public class TagDao extends BeanDaoAbstract<TagBean> {
 	
 	private static final String TABLE_NAME = "tag";
 	
-	private DataSource ds = null;
-	
-	
 	public TagDao(DataSource ds) {
-		this.ds = ds;
-		
-		System.out.println("DataSource Tag Model creation....");
+		super(ds);
 	}
 
 	@Override
@@ -47,33 +43,6 @@ public class TagDao implements BeanDaoInterface<TagBean> {
 					conn.close();
 			}
 		}
-	}
-
-	@Override
-	public synchronized boolean doDelete(int id) throws SQLException {
-		Connection conn = null;
-		PreparedStatement preStm = null;
-
-		int result = 0;
-		String deleteSQL = "DELETE FROM " + TagDao.TABLE_NAME + " WHERE id_tag = ?";
-		
-		try {
-			conn = ds.getConnection();
-			preStm = conn.prepareStatement(deleteSQL);
-
-			preStm.setInt(1, id);
-			
-			result = preStm.executeUpdate();
-		} finally {
-			try {
-				if (preStm != null)
-					preStm.close();
-			} finally {
-				if (conn != null)
-					conn.close();
-			}
-		}
-		return (result != 0);
 	}
 
 	@Override
