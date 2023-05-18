@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import javax.sql.DataSource;
 
 import it.model.OrderBean;
+import it.model.ProductBean;
 import it.model.ProductTypeBean;
 
 public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
@@ -65,6 +66,10 @@ public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 			while (rs.next()) {
 				productType.setTypeId(rs.getInt("id_type"));
 				productType.setName(rs.getString("name"));
+				
+				ProductDao pd = new ProductDao(this.ds);
+				Collection<ProductBean> products = pd.doRetrieveAll().stream().filter(p -> p.getProductId() == id).toList();
+				productType.setProducts(products);
 			}
 			
 		} finally {
@@ -98,6 +103,10 @@ public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 				
 				productType.setTypeId(rs.getInt("id_type"));
 				productType.setName(rs.getString("name"));
+				
+				ProductDao pd = new ProductDao(this.ds);
+				Collection<ProductBean> products = pd.doRetrieveAll().stream().filter(p -> p.getProductId() == productType.getTypeId()).toList();
+				productType.setProducts(products);
 			
 				productTypes.add(productType);
 			}
