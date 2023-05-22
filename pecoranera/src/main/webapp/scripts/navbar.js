@@ -11,7 +11,14 @@ $(document).ready(function() {
         outsideClose.toggleClass('closed')
     })
     
-
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 1) {
+            $('nav').removeClass('navbar-home');
+        }
+        else {
+            $('nav').addClass('navbar-home');
+        }
+    });
 
 });
 

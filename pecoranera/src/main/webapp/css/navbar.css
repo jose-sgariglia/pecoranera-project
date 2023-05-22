@@ -2,9 +2,37 @@
 
 body{
     margin: 0;
+    top: 0;
     --nav-height: 4.8rem;
-    overflow: hidden;
+    overflow-x: hidden;
 }
+
+::-webkit-scrollbar{
+    color: var(--dark-background);
+    width: 10px;
+}
+
+::-webkit-scrollbar-button{
+    width: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+::-webkit-scrollbar-button:increment{
+    border-top: 10px solid var(--neon-light);
+}
+
+::-webkit-scrollbar-button:decrement{
+    border-bottom: 10px solid var(--neon-light);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--page-background);
+    border-radius: 10px;
+    border: 2px solid var(--neon-light);
+}
+
+
 
 nav{
     position: fixed;
@@ -17,8 +45,17 @@ nav{
     box-sizing: border-box;
     overflow: hidden;
     width: 100vw;
+    top: 0;
     border-bottom: 2px solid var(--neon-color);
     box-shadow: 0 3px 5px var(--neon-light), 0 3px 10px var(--neon-light);
+    z-index: 5;
+    transition: .25s ease-out;
+}
+
+.navbar-home{
+    background-color: rgba(var(--dark-background), 0);
+    border: 2px solid rgba(var(--neon-color), 0);
+    box-shadow: 0 0px 5px rgba(var(--neon-light), 0), 0 0px 10px rgba(var(--neon-light));
 }
 
 .logo{
