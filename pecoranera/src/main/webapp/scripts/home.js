@@ -12,17 +12,31 @@ $(document).ready(function() {
         return elementBottom > viewportTop && elementTop < viewportBottom;
     }
 
+    $('body').bind('beforeunload',function(){
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     $(window).on('resize scroll', function() {
         if (chiSiamo.isInViewport()) {
-            console.log("VISIBILE");
+            //console.log("VISIBILE");
             chiSiamo.addClass('insight');
             images.children("img").addClass('insight')
             
         } else {
-            console.log("NOT! VISIBILE");
+            //console.log("NOT! VISIBILE");
             chiSiamo.removeClass('insight');
             images.children("img").removeClass('insight')
         }
+    });
+
+    $("#menu-choice a").on('mouseover', function () {
+        $(this).addClass('active-choice');
+        $(this).siblings().addClass('inactive-choice');
+    });
+
+    $("#menu-choice a").on('mouseleave', function(){
+        $(this).removeClass('active-choice');
+        $(this).siblings().removeClass('inactive-choice');
     });
 
 

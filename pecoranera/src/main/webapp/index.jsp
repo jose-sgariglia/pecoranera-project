@@ -50,14 +50,14 @@
 
     <section id="eventi">
         <div class="side-text">
-            <h1></h1>
+            <h1>EVENTI</h1>
 
-            <p>Vivi l&#39;esperienza jazz al Pecoranera! <br><br>
+            <h2>Vivi l&#39;esperienza jazz al Pecoranera! <br><br></h2>
 
-                Eventi di musica dal vivo ogni settimana<br><br>
-                
+            <p>Eventi di musica dal vivo ogni settimana<br><br>
+            
                 Artisti da ogni parte del mondo vengono ad esibirsi al Pecoranera<br><br>
-                
+            
                 Cosa aspetti?<br><br>
 
                 <a href="eventi.jsp">Scopri i nostri eventi</a>
@@ -66,16 +66,16 @@
     </section>
 
     <section id="menu">
-        <h1></h1>
+        <h1>MENU</h1>
         
         <div id="menu-choice">
-            <div id="food">
+            <a id="food">
+                Hai fame? Prova il nostro menu!
+            </a>
 
-            </div>
-
-            <div id="drink">
-
-            </div>
+            <a id="drink">
+                Hai sete? Sperimenta i nostri drink!
+            </a>
         </div>
     </section>
     
