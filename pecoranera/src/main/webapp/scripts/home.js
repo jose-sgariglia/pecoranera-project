@@ -1,6 +1,7 @@
 $(document).ready(function() {
     let chiSiamo = $("#chisiamo .side-text").first();
     let images = $("#chisiamo .side-images");
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
     $.fn.isInViewport = function (){
         var elementTop = $(this).offset().top;
@@ -14,6 +15,14 @@ $(document).ready(function() {
 
     $('body').bind('beforeunload',function(){
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    $('a[href="#"]').click(function() {
+        var offset = -200; // <-- change the value here
+
+        $('html, body').animate({
+            scrollTop: chiSiamo.offset().top + offset
+        }, 500);
     });
 
     $(window).on('resize scroll', function() {
@@ -30,13 +39,17 @@ $(document).ready(function() {
     });
 
     $("#menu-choice a").on('mouseover', function () {
-        $(this).addClass('active-choice');
-        $(this).siblings().addClass('inactive-choice');
+        if( !isMobile && $(window).width() > 600) {
+            $(this).addClass('active-choice');
+            $(this).siblings().addClass('inactive-choice');
+        }
     });
 
     $("#menu-choice a").on('mouseleave', function(){
-        $(this).removeClass('active-choice');
-        $(this).siblings().removeClass('inactive-choice');
+        if( !isMobile && $(window).width() > 600){
+            $(this).removeClass('active-choice');
+            $(this).siblings().removeClass('inactive-choice');
+        }
     });
 
 

@@ -22,7 +22,7 @@
 
     <div class="spacer"></div>
 
-    <a href="#chisiamo" id="scrolldown-btn">
+    <a href="#" id="scrolldown-btn">
         <span></span>
         <span></span>
     </a>
@@ -69,11 +69,11 @@
         <h1>MENU</h1>
         
         <div id="menu-choice">
-            <a id="food">
+            <a id="food" href="menu.jsp">
                 Hai fame? Prova il nostro menu!
             </a>
 
-            <a id="drink">
+            <a id="drink" href="menu.jsp">
                 Hai sete? Sperimenta i nostri drink!
             </a>
         </div>
