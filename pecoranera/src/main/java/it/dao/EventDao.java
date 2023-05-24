@@ -11,14 +11,14 @@ import java.sql.Date;
 import java.util.LinkedList;
 
 import it.model.EventBean;
-import it.model.OrderBean;
+import it.model.TagBean;
 
 public class EventDao extends BeanDaoAbstract<EventBean> {
 	
-	private static final String TABLE_NAME = "event";
+	private static final String TABLE_RELATIONSHIP_TAG = "event_tag";
 
 	public EventDao(DataSource ds) {
-		super(ds);
+		super(ds, "event");
 	}
 	
 	@Override
@@ -26,8 +26,8 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + EventDao.TABLE_NAME
-				+ " (date, name, description, price, available_tickets, max_tickets) VALUES (?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME
+				+ " (date, name, description, price, available_tickets, max_tickets, cancellation) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = ds.getConnection();
@@ -37,11 +37,12 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 			preparedStatement.setString(3, event.getDescription());
 			preparedStatement.setDouble(4, event.getPrice());
 			preparedStatement.setInt(5, event.getAvailable_tickets());
-			preparedStatement.setInt(5, event.getMax_tickets());
+			preparedStatement.setInt(6, event.getMax_tickets());
+			preparedStatement.setDate(7, new Date(event.getCancellation().getTime()));
 			
 			preparedStatement.executeUpdate();
-
 			connection.commit();
+
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -60,7 +61,7 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 
 		EventBean bean = new EventBean();
 
-		String selectSQL = "SELECT * FROM " + EventDao.TABLE_NAME + " WHERE id_event = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + " WHERE id_event = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -77,6 +78,8 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 				bean.setPrice(rs.getDouble("price"));
 				bean.setAvailable_tickets(rs.getInt("available_tickets"));
 				bean.setMax_tickets(rs.getInt("max_tickets"));
+				bean.setCancellation(rs.getDate("cancellation"));
+				bean.setTags(this.getTags(bean));
 			}
 
 		} finally {
@@ -98,7 +101,7 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 
 		Collection<EventBean> events = new LinkedList<EventBean>();
 
-		String selectSQL = "SELECT * FROM " + EventDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 
 		try {
 			connection = ds.getConnection();
@@ -116,6 +119,8 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 				bean.setPrice(rs.getDouble("price"));
 				bean.setAvailable_tickets(rs.getInt("available_tickets"));
 				bean.setMax_tickets(rs.getInt("max_tickets"));
+				bean.setCancellation(rs.getDate("cancellation"));
+				bean.setTags(this.getTags(bean));
 				events.add(bean);
 			}
 
@@ -132,11 +137,11 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 	}
 
 	@Override
-	public void doUpdate(EventBean item) throws SQLException {
+	public synchronized void doUpdate(EventBean item) throws SQLException {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 
-		String updateSQL = "UPDATE " + EventDao.TABLE_NAME 
+		String updateSQL = "UPDATE " + this.TABLE_NAME 
 				+ "SET date = ?, name = ?, description = ?, price = ?, available_tickets = ?, max_tickets = ?"
 				+ "WHERE id_event = ?";
 		
@@ -162,5 +167,99 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 					conn.close();
 			}
 		}
+	}
+	
+	public synchronized void insertTag(EventBean item, TagBean node) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+
+		String insertSQL = "INSERT INTO " + EventDao.TABLE_RELATIONSHIP_TAG 
+				+ "(id_event, id_tag) VALUES (? ?)";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(insertSQL);
+			
+			preStm.setInt(item.getEventId(), node.getTagId());
+
+			preStm.executeUpdate();
+			conn.commit();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
+	}
+	
+	public synchronized boolean deleteTag(EventBean item, TagBean node) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String deleteSQL = "DELETE FROM " + EventDao.TABLE_RELATIONSHIP_TAG + " WHERE id_event = ? AND id_tag  = ?";
+
+		try {
+			connection = ds.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			
+			preparedStatement.setInt(1, item.getEventId());
+			preparedStatement.setInt(2, node.getTagId());
+
+			result = preparedStatement.executeUpdate();
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return (result != 0);
+	}
+	
+	public synchronized Collection<TagBean> getTags(EventBean item) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preStm = null;
+
+		Collection<TagBean> tags = new LinkedList<>();
+		String selectSQL = "SELECT tag.* FROM " + EventDao.TABLE_RELATIONSHIP_TAG + " INNER JOIN tag ON tag.id_tag = " + EventDao.TABLE_RELATIONSHIP_TAG + ".id_tag "
+				+ "WHERE " + EventDao.TABLE_RELATIONSHIP_TAG + ".id_event = ?";
+		
+		try {
+			conn = ds.getConnection();
+			preStm = conn.prepareStatement(selectSQL);
+			
+			preStm.setInt(1, item.getEventId());
+
+			ResultSet rs = preStm.executeQuery();
+			
+			while (rs.next()) {
+				TagBean tag = new TagBean();
+				
+				tag.setTagId(rs.getInt("id_tag"));
+				tag.setName(rs.getString("name"));
+				
+				tags.add(tag);
+			}
+			
+			preStm.executeUpdate();
+		} finally {
+			try {
+				if (preStm != null)
+					preStm.close();
+			} finally {
+				if (conn != null)
+					conn.close();
+			}
+		}
+		
+		return tags;
 	}
 }

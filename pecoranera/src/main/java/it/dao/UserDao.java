@@ -8,16 +8,13 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
-import it.model.OrderBean;
 import it.model.UserBean;
 import it.model.UserBean.Role;
 
 public class UserDao extends BeanDaoAbstract<UserBean> {
-
-	private static final String TABLE_NAME = "user";
 	
 	public UserDao(DataSource ds) {
-		super(ds);
+		super(ds, "user");
 	}
 	
 	@Override
@@ -25,7 +22,7 @@ public class UserDao extends BeanDaoAbstract<UserBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		String insertSQL = "INSERT INTO " + UserDao.TABLE_NAME 
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME 
 				+ "(email, password, username, role) VALUES "
 				+ "(?, ?, ?, ?, ?)";
 		
@@ -58,7 +55,7 @@ public class UserDao extends BeanDaoAbstract<UserBean> {
 		PreparedStatement preStm = null;
 		
 		UserBean user = new UserBean();
-		String selectSQL = "SELECT * FROM " + UserDao.TABLE_NAME + "WHERE id_user = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + "WHERE id_user = ?";
 		
 		try {
 			conn = ds.getConnection();
@@ -96,7 +93,7 @@ public class UserDao extends BeanDaoAbstract<UserBean> {
 		
 		Collection<UserBean> users = new LinkedList<UserBean>();
 		
-		String selectSQL = "SELECT * FROM " + UserDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 		
 		try {
 			conn = ds.getConnection();
@@ -134,7 +131,7 @@ public class UserDao extends BeanDaoAbstract<UserBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		String updateSQL = "UPDATE " + UserDao.TABLE_NAME 
+		String updateSQL = "UPDATE " + this.TABLE_NAME 
 				+ " email = ?, password = ?, username = ?, role = ?"
 				+ " WHERE id_user = ?"; 		
 		

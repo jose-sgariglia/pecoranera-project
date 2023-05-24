@@ -8,15 +8,12 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
-import it.model.OrderBean;
 import it.model.ProductTypeBean;
 
 public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
-
-	private static final String TABLE_NAME = "product_type";
 	
 	public ProductTypeDao(DataSource ds) {
-		super(ds);
+		super(ds, "product_type");
 	}
 	
 	@Override
@@ -24,7 +21,7 @@ public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		String insertSQL = "INSERT INTO " + ProductTypeDao.TABLE_NAME
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME
 				+ "(name) VALUES ?";
 		
 		try {
@@ -52,7 +49,7 @@ public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 		PreparedStatement preStm = null;
 		
 		ProductTypeBean productType = new ProductTypeBean();
-		String selectSQL = "SELECT * FROM " + ProductTypeDao.TABLE_NAME + " WHERE id_type = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + " WHERE id_type = ?";
 		
 		try {
 			conn = ds.getConnection();
@@ -85,7 +82,7 @@ public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 		PreparedStatement preStm = null;
 		
 		Collection<ProductTypeBean> productTypes = new LinkedList<ProductTypeBean>();
-		String selectSQL = "SELECT * FROM " + ProductTypeDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 		
 		try {
 			conn = ds.getConnection();
@@ -119,7 +116,7 @@ public class ProductTypeDao extends BeanDaoAbstract<ProductTypeBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		String updateSQL = "UPDATE " + ProductTypeDao.TABLE_NAME 
+		String updateSQL = "UPDATE " + this.TABLE_NAME 
 				+ "name = ? WHERE id_type = ?";
 		
 		try {
