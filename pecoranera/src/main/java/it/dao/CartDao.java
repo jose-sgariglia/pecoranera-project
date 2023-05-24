@@ -8,14 +8,12 @@ import java.util.Collection;
 import javax.sql.DataSource;
 import java.util.LinkedList;
 
-import it.model.ArtistBean;
 import it.model.CartBean;
 
 public class CartDao extends BeanDaoAbstract<CartBean> {
-	private static final String TABLE_NAME = "cart";
 
 	public CartDao(DataSource ds) {
-		super(ds);
+		super(ds, "cart");
 	}
 	
 	@Override
@@ -23,7 +21,7 @@ public class CartDao extends BeanDaoAbstract<CartBean> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + CartDao.TABLE_NAME
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME
 				+ " (id_user) VALUES (?)";
 
 		try {
@@ -52,7 +50,7 @@ public class CartDao extends BeanDaoAbstract<CartBean> {
 
 		CartBean bean = new CartBean();
 
-		String selectSQL = "SELECT * FROM " + CartDao.TABLE_NAME + " WHERE id_cart = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + " WHERE id_cart = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -85,7 +83,7 @@ public class CartDao extends BeanDaoAbstract<CartBean> {
 
 		Collection<CartBean> carts = new LinkedList<CartBean>();
 
-		String selectSQL = "SELECT * FROM " + CartDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 
 		try {
 			connection = ds.getConnection();

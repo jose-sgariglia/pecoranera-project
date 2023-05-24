@@ -8,15 +8,12 @@ import java.util.Collection;
 import java.util.LinkedList;
 import javax.sql.DataSource;
 
-import it.model.OrderBean;
 import it.model.TagBean;
 
 public class TagDao extends BeanDaoAbstract<TagBean> {
 	
-	private static final String TABLE_NAME = "tag";
-	
 	public TagDao(DataSource ds) {
-		super(ds);
+		super(ds, "tag");
 	}
 
 	@Override
@@ -24,7 +21,7 @@ public class TagDao extends BeanDaoAbstract<TagBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 
-		String insertSQL = "INSERT INTO " + TagDao.TABLE_NAME
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME
 				+ "(name) VALUES (?)";
 		try {
 			conn = ds.getConnection();
@@ -51,7 +48,7 @@ public class TagDao extends BeanDaoAbstract<TagBean> {
 		PreparedStatement preStm = null;
 		
 		TagBean tag = new TagBean();
-		String selectSQL = "SELECT * FROM " + TagDao.TABLE_NAME + "WHERE id_tag = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + "WHERE id_tag = ?";
 		
 		try {
 			conn = ds.getConnection();
@@ -85,7 +82,7 @@ public class TagDao extends BeanDaoAbstract<TagBean> {
 		PreparedStatement preStm = null;
 		
 		Collection<TagBean> tags = new LinkedList<TagBean>();
-		String selectSQL = "SELECT * FROM " + TagDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 		
 		try {
 			conn = ds.getConnection();
@@ -121,7 +118,7 @@ public class TagDao extends BeanDaoAbstract<TagBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 
-		String updateSQL = "UPDATE " + TagDao.TABLE_NAME
+		String updateSQL = "UPDATE " + this.TABLE_NAME
 				+ " name = ? WHERE id_tag = ?";
 		
 		try {

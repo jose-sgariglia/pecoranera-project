@@ -11,11 +11,9 @@ import java.util.LinkedList;
 import it.model.ArtistBean;
 
 public class ArtistDao extends BeanDaoAbstract<ArtistBean> {
-	
-	private static final String TABLE_NAME = "artist";
 
 	public ArtistDao(DataSource ds) {
-		super(ds);
+		super(ds, "artist");
 	}
 	
 	@Override
@@ -23,7 +21,7 @@ public class ArtistDao extends BeanDaoAbstract<ArtistBean> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + ArtistDao.TABLE_NAME
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME
 				+ " (name, description) VALUES (?, ?)";
 
 		try {
@@ -54,7 +52,7 @@ public class ArtistDao extends BeanDaoAbstract<ArtistBean> {
 
 		ArtistBean bean = new ArtistBean();
 
-		String selectSQL = "SELECT * FROM " + ArtistDao.TABLE_NAME + " WHERE id_artist = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + " WHERE id_artist = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -88,7 +86,7 @@ public class ArtistDao extends BeanDaoAbstract<ArtistBean> {
 
 		Collection<ArtistBean> artists = new LinkedList<ArtistBean>();
 
-		String selectSQL = "SELECT * FROM " + ArtistDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 
 		try {
 			connection = ds.getConnection();
@@ -122,7 +120,7 @@ public class ArtistDao extends BeanDaoAbstract<ArtistBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 
-		String updateSQL = "UPDATE " + ArtistDao.TABLE_NAME 
+		String updateSQL = "UPDATE " + this.TABLE_NAME 
 				+ "SET name = ?, description = ?"
 				+ "WHERE id_artist = ?";
 		

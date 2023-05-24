@@ -15,12 +15,10 @@ import it.model.TagBean;
 
 public class EventDao extends BeanDaoAbstract<EventBean> {
 	
-	private static final String TABLE_NAME = "event";
-	
 	private static final String TABLE_RELATIONSHIP_TAG = "event_tag";
 
 	public EventDao(DataSource ds) {
-		super(ds);
+		super(ds, "event");
 	}
 	
 	@Override
@@ -28,7 +26,7 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + EventDao.TABLE_NAME
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME
 				+ " (date, name, description, price, available_tickets, max_tickets, cancellation) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -63,7 +61,7 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 
 		EventBean bean = new EventBean();
 
-		String selectSQL = "SELECT * FROM " + EventDao.TABLE_NAME + " WHERE id_event = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + " WHERE id_event = ?";
 
 		try {
 			connection = ds.getConnection();
@@ -103,7 +101,7 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 
 		Collection<EventBean> events = new LinkedList<EventBean>();
 
-		String selectSQL = "SELECT * FROM " + EventDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 
 		try {
 			connection = ds.getConnection();
@@ -143,7 +141,7 @@ public class EventDao extends BeanDaoAbstract<EventBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 
-		String updateSQL = "UPDATE " + EventDao.TABLE_NAME 
+		String updateSQL = "UPDATE " + this.TABLE_NAME 
 				+ "SET date = ?, name = ?, description = ?, price = ?, available_tickets = ?, max_tickets = ?"
 				+ "WHERE id_event = ?";
 		

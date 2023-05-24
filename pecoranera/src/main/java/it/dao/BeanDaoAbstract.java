@@ -9,10 +9,11 @@ import javax.sql.DataSource;
 
 public abstract class BeanDaoAbstract<T>{
 	protected DataSource ds = null;
-	protected String TABLE_NAME;
+	protected final String TABLE_NAME;
 
-	public BeanDaoAbstract(DataSource ds) {
+	public BeanDaoAbstract(DataSource ds, String table_name) {
 		this.ds = ds;
+		this.TABLE_NAME = table_name;
 	}
 
 	public abstract void doSave(T item) throws SQLException;

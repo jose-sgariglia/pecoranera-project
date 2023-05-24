@@ -9,16 +9,12 @@ import java.util.LinkedList;
 
 import javax.sql.DataSource;
 
-import it.model.CartBean;
 import it.model.OrderBean;
 
 public class OrderDao extends BeanDaoAbstract<OrderBean> {
-
-	private static final String TABLE_NAME = "order";
-	
 	
 	public OrderDao(DataSource ds) {
-		super(ds);
+		super(ds, "order");
 	}
 	
 	@Override
@@ -27,7 +23,7 @@ public class OrderDao extends BeanDaoAbstract<OrderBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		String insertSQL = "INSERT INTO " + OrderDao.TABLE_NAME 
+		String insertSQL = "INSERT INTO " + this.TABLE_NAME 
 				+ " (tickets, price, date, user, id_event) VALUES (?, ?, ?, ?, ?)";;
 	
 		try {
@@ -59,7 +55,7 @@ public class OrderDao extends BeanDaoAbstract<OrderBean> {
 		PreparedStatement preStm = null;
 		
 		OrderBean order = new OrderBean();
-		String selectSQL = "SELECT * FROM " + OrderDao.TABLE_NAME + "WHERE id_order = ?";
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME + "WHERE id_order = ?";
 		
 		try {
 			conn = ds.getConnection();
@@ -97,7 +93,7 @@ public class OrderDao extends BeanDaoAbstract<OrderBean> {
 		
 		Collection<OrderBean> orders = new LinkedList<OrderBean>();
 		
-		String selectSQL = "SELECT * FROM " + OrderDao.TABLE_NAME;
+		String selectSQL = "SELECT * FROM " + this.TABLE_NAME;
 		
 		try {
 			conn = ds.getConnection();
@@ -136,7 +132,7 @@ public class OrderDao extends BeanDaoAbstract<OrderBean> {
 		Connection conn = null;
 		PreparedStatement preStm = null;
 		
-		String updateSQL = "UPDATE " + OrderDao.TABLE_NAME
+		String updateSQL = "UPDATE " + this.TABLE_NAME
 				+ "SET tickets = ?, price = ?, date = ?, user = ?, id_event = ? "
 				+ "WHERE id_order = ?";
 	
