@@ -41,4 +41,12 @@ public class CartBean implements Serializable {
 	public void setEvents(Map<EventBean, Integer> events) {
 		this.events = events;
 	}
+	
+	public boolean addEvent(EventBean event, Integer quantity) {
+		return this.events.put(event, quantity) != null;
+	}
+	
+	public boolean removeEvent(EventBean event) {
+		return this.events.remove(event) != null;
+	}
 }

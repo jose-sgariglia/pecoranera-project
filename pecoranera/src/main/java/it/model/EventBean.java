@@ -106,33 +106,54 @@ public class EventBean implements Serializable {
 		this.max_tickets = max_tickets;
 	}
 	
+	
 	public Collection<TagBean> getTags() {
 		return tags;
 	}
 
-
+	
 	public void setTags(Collection<TagBean> tags) {
 		this.tags = tags;
 	}
 
-
+	
 	public Map<ArtistBean, String> getArtists() {
 		return artists;
 	}
 
-
+	
 	public void setArtists(Map<ArtistBean, String> artists) {
 		this.artists = artists;
 	}
 
-
+	
 	public Date getCancellation() {
 		return cancellation;
 	}
 
-
+	
 	public void setCancellation(Date cancellation) {
 		this.cancellation = cancellation;
+	}
+	
+	
+	public boolean addTag(TagBean tag) {
+		return this.tags.add(tag);
+	}
+	
+	
+	public boolean removeTag(TagBean tag) {
+		return this.tags.remove(tag);
+	}
+	
+	
+	public boolean addEvent(ArtistBean artist, String role) {
+		return this.artists.put(artist, role) != null;
+	}
+	
+	
+	public boolean removeEvent(ArtistBean artist) {
+		return this.artists.remove(artist) != null;
 	}
 	
 }
