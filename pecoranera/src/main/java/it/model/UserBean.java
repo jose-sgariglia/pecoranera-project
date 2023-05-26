@@ -1,12 +1,14 @@
 package it.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	enum Role {
+	public static enum Role {
 		ADMIN, USER
 	}
 	
@@ -15,6 +17,8 @@ public class UserBean implements Serializable {
 	private String password;
 	private String username;
 	private Role role;
+	private Collection<TagBean> tags;
+	private Collection<OrderBean> orders;
 
 	public UserBean() {
 		this.id_user = -1;
@@ -22,13 +26,15 @@ public class UserBean implements Serializable {
 		this.password = "";
 		this.username = "";
 		this.role = null;
+		this.tags = new LinkedList<TagBean>();
+		this.orders = new LinkedList<OrderBean>();
 	}
 
-	public int getUser_id() {
+	public int getUserId() {
 		return id_user;
 	}
 
-	public void setUser_id(int id_user) {
+	public void setUserId(int id_user) {
 		this.id_user = id_user;
 	}
 
@@ -63,9 +69,20 @@ public class UserBean implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	
-	
-	
-	
+
+	public Collection<TagBean> getTags() {
+		return tags;
+	}
+
+	public void setTags(Collection<TagBean> tags) {
+		this.tags = tags;
+	}
+
+	public Collection<OrderBean> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Collection<OrderBean> orders) {
+		this.orders = orders;
+	}
 }

@@ -16,11 +16,11 @@ public class ArtistBean implements Serializable {
 		this.description = "";
 	}
 
-	public int getId_artist() {
+	public int getArtistId() {
 		return id_artist;
 	}
 
-	public void setId_artist(int id_artist) {
+	public void setArtistId(int id_artist) {
 		this.id_artist = id_artist;
 	}
 

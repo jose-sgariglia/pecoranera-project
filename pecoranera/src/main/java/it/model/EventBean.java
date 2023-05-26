@@ -1,7 +1,11 @@
 package it.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class EventBean implements Serializable {
 
@@ -12,8 +16,11 @@ public class EventBean implements Serializable {
 	private String name;
 	private String description;
 	private double price;
-	private int available_ticket;
-	private int max_ticket;
+	private int available_tickets;
+	private int max_tickets;
+	private Date cancellation;
+	private Collection<TagBean> tags;
+	private Map<ArtistBean, String> artists;
 	
 	
 	public EventBean() {
@@ -22,17 +29,20 @@ public class EventBean implements Serializable {
 		this.name = "";
 		this.description = "";
 		this.price = 0.0;
-		this.available_ticket = 0;
-		this.max_ticket = 0;
+		this.available_tickets = 0;
+		this.max_tickets = 0;
+		this.cancellation = null;
+		this.tags = new LinkedList<TagBean>();
+		this.artists = new HashMap<ArtistBean, String>();
 	}
 
 
-	public int getId_event() {
+	public int getEventId() {
 		return id_event;
 	}
 
 
-	public void setId_event(int id_event) {
+	public void setEventId(int id_event) {
 		this.id_event = id_event;
 	}
 
@@ -77,24 +87,52 @@ public class EventBean implements Serializable {
 	}
 
 
-	public int getAvailable_ticket() {
-		return available_ticket;
+	public int getAvailable_tickets() {
+		return available_tickets;
 	}
 
 
-	public void setAvailable_ticket(int available_ticket) {
-		this.available_ticket = available_ticket;
+	public void setAvailable_tickets(int available_ticket) {
+		this.available_tickets = available_ticket;
 	}
 
 
-	public int getMax_ticket() {
-		return max_ticket;
+	public int getMax_tickets() {
+		return max_tickets;
 	}
 
 
-	public void setMax_ticket(int max_ticket) {
-		this.max_ticket = max_ticket;
+	public void setMax_tickets(int max_tickets) {
+		this.max_tickets = max_tickets;
 	}
 	
+	public Collection<TagBean> getTags() {
+		return tags;
+	}
+
+
+	public void setTags(Collection<TagBean> tags) {
+		this.tags = tags;
+	}
+
+
+	public Map<ArtistBean, String> getArtists() {
+		return artists;
+	}
+
+
+	public void setArtists(Map<ArtistBean, String> artists) {
+		this.artists = artists;
+	}
+
+
+	public Date getCancellation() {
+		return cancellation;
+	}
+
+
+	public void setCancellation(Date cancellation) {
+		this.cancellation = cancellation;
+	}
 	
 }

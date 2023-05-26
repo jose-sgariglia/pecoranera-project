@@ -1,6 +1,8 @@
 package it.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CartBean implements Serializable {
 
@@ -8,13 +10,15 @@ public class CartBean implements Serializable {
 
 	private int id_cart;
 	private UserBean user;
+	private Map<EventBean, Integer> events;
 	
 	public CartBean() {
 		this.id_cart = -1;
 		this.user = null;
+		this.events = new HashMap<EventBean, Integer>();
 	}
 
-	public int getId_cart() {
+	public int getCartId() {
 		return id_cart;
 	}
 
@@ -29,6 +33,12 @@ public class CartBean implements Serializable {
 	public void setUser(UserBean user) {
 		this.user = user;
 	}
-	
-	
+
+	public Map<EventBean, Integer> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Map<EventBean, Integer> events) {
+		this.events = events;
+	}
 }
