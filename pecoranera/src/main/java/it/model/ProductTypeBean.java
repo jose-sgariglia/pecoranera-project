@@ -18,29 +18,43 @@ public class ProductTypeBean implements Serializable {
 		this.products = new LinkedList<ProductBean>();
 	}
 
+	
 	public Collection<ProductBean> getProducts() {
 		return products;
 	}
 
+	
 	public void setProducts(Collection<ProductBean> products) {
 		this.products = products;
 	}
 
+	
 	public int getTypeId() {
 		return id_type;
 	}
 
+	
 	public void setTypeId(int id_type) {
 		this.id_type = id_type;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
 
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 	
 	
+	public boolean addProduct(ProductBean product) {
+		return this.products.add(product);
+	}
+	
+	
+	public boolean removeProduct(ProductBean product) {
+		return this.products.remove(product);
+	}
 }

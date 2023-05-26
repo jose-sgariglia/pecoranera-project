@@ -85,4 +85,20 @@ public class UserBean implements Serializable {
 	public void setOrders(Collection<OrderBean> orders) {
 		this.orders = orders;
 	}
+
+	public boolean addOrder(OrderBean order) {
+		return this.orders.add(order);
+	}
+	
+	public boolean removeOrder(OrderBean order) {
+		return this.orders.remove(order);
+	}
+	
+	public boolean addTag(TagBean tag) {
+		return this.tags.add(tag);
+	}
+	
+	public boolean removeTag(TagBean tag) {
+		return this.tags.remove(tag);
+	}
 }
