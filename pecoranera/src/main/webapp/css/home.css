@@ -321,6 +321,7 @@ h1{
     display: flex;
     height: inherit;
     width: 50%;
+    text-decoration: none;
     -webkit-filter: grayscale(1); 
     -webkit-filter: grayscale(100%); 
     -moz-filter: grayscale(100%);
