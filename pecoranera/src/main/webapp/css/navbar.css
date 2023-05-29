@@ -1,10 +1,11 @@
 @import "variables.css";
 
-body{
+html, body{
     margin: 0;
     top: 0;
-    --nav-height: 4.8rem;
     overflow-x: hidden;
+    min-height: 100vh;
+    min-width: 100vw;
 }
 
 ::-webkit-scrollbar{
@@ -161,7 +162,6 @@ nav ul li{
 @media only screen and (max-width: 600px) {
 
     body{
-        --nav-height: 4.5rem;
         --button-bar-size: calc(var(--nav-height) / 8);
     }
     
