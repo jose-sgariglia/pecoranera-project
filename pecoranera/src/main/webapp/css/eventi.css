@@ -11,6 +11,18 @@ h1,h2{
     font-family: var(--header-font);
 }
 
+#upcoming{
+    padding-bottom: 10vh;
+}
+
+#upcoming h1{
+    text-align: center;
+    color: var(--neon-color);
+    text-shadow: var(--neon-effect);
+    font-size: 2.3rem;
+    padding-bottom: .5rem;
+}
+
 #upcoming>div{
     display: flex;
     width: 100vw;
@@ -24,6 +36,11 @@ h1,h2{
     position: relative;
     background-color: black;
     overflow: hidden;
+    color: var(--main-color);
+    cursor: pointer;
+    box-shadow: .25rem .25rem 7px var(--dark-background),
+                -.25rem -.25rem 7px var(--dark-background);
+    border: 1px solid black;
 }
 
 .upcoming-event>img{
@@ -69,12 +86,6 @@ h1,h2{
     text-decoration: none;
     color: var(--main-color);
     transition: .5s ease-out;
-    cursor: pointer;
-}
-
-.event-tag:hover{
-    background-color: var(--main-color);
-    color: var(--page-background);
 }
 
 .upcoming-event:hover>img, .upcoming-event:focus>img{
@@ -123,4 +134,135 @@ h1,h2{
     border: 2rem solid var(--neon-light);
     border-bottom: 2rem solid transparent;
     border-right: 2rem solid transparent;
+}
+
+#searchbar{
+    width: 100vw;
+    background-color: var(--dark-background);
+}
+
+#searchbar .event-tag{
+    background-color: var(--main-color);
+    color: var(--page-background);
+}
+
+#upper-search{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding: 1rem 10vw 1rem 5vw;
+    box-sizing: border-box;
+    box-shadow: 0 .5rem 10px black;
+}
+
+#filtri-btn{
+    font-size: 1.2rem;
+    font-family: var(--main-font);
+    color: var(--main-color);
+    outline: none;
+    background-color: var(--page-background);
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    padding: .35rem .55rem;
+    margin-right: 3rem;
+    cursor: pointer;
+    transition: .5s ease-out;
+}
+
+#filtri-btn:hover, #filtri-btn:focus{
+    background-color: var(--main-color);
+    color: var(--page-background);
+}
+
+#search-input{
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+    padding: .35rem .65rem;
+    width: 30rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+}
+
+#name-search{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: var(--main-color);
+    font-size: 1.2rem;
+}
+
+#search-button{
+    font-size: 1.2rem;
+    color: var(--main-color);
+    background-color: var(--page-background);
+    outline: none;
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+    width: 2.3rem;
+    height: 2.3rem;
+    position: absolute;
+    top: 0;
+    right: 0;  
+    cursor: pointer;
+    transition: .5s ease-out;
+}
+
+#search-button:hover, #search-button:focus{
+    background-color: var(--main-color);
+    color: var(--page-background);
+}
+
+input[type="date"]{
+    outline: none;
+    border: 1px solid var(--main-color);
+    background-color: transparent;
+    color: var(--main-color);
+    font-size: 1.1rem;
+    color-scheme: dark;
+    margin-bottom: 1.5rem;
+}
+
+#search-button i{
+    transform: rotate(90deg);
+    transition: .5s ease-out;
+}
+
+#search-button:hover i, #search-button:focus i{
+    transform: rotate(450deg);
+}
+
+#filter-fieldset{
+    margin: 0;
+    border: none;
+    box-shadow: 0 .5rem 10px black;
+}
+
+#filter-fieldset>div{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#filter-fieldset h3{
+    font-family: var(--header-font);
+    font-size: 1.5rem;
+}
+
+#filter-fieldset label{
+    font-size: 1.1rem;
+    font-family: var(--main-font);
+    padding-right: .5rem;
+}
+
+#filters{
+    width: 60vw;
+}
+
+#filters .event-tag{
+    margin-left: .2rem;
+    margin-right: .2rem;
+    cursor: pointer;
 }

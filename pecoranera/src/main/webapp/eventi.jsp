@@ -21,71 +21,86 @@
         <h1>Prossimi Eventi</h1>
 
         <div>
-            <div class="upcoming-event">
+            <a class="upcoming-event" href="">
                 <img src="${pageContext.request.contextPath}/images/lellopetrarca.jpg" alt="">
 
                <div>
                     <h2>Lello Petrarca Trio</h2>
         
                     <div class="tags">
-                        <a class="event-tag">Jazz Classico</a>
-                        <a class="event-tag">Jazz Moderno</a>
+                        <span class="event-tag">Jazz Classico</span>
+                        <span class="event-tag">Jazz Moderno</span>
                     </div>
             
                     <div class="event-date">Marted&igrave; 30 Maggio</div>
                </div>
-            </div>
-    
-            <div class="upcoming-event">
-                <img src="${pageContext.request.contextPath}/images/tizia123.jpg" alt="">
+            </a>
+
+            <a class="upcoming-event" href="">
+                <img src="${pageContext.request.contextPath}/images/tizia123.jpg" alt="" />
 
                 <div>
                     <h2>Tizio Caio Quartet</h2>
-    
+
                     <div class="tags">
-                        <a class="event-tag">Blues</a>
-                        <a class="event-tag">Gipsy Jazz</a>
+                        <span class="event-tag">Blues</span>
+                        <span class="event-tag">Gipsy Jazz</span>
                     </div>
-            
+
                     <div class="event-date">Venerd&igrave; 2 Giugno</div>
                 </div>
-            </div>
+            </a>
         </div>    
 
     </section>
 
     <div id="searchbar">
         <form action="">
-            <button id="filtri-btn">Filtri</button>
-            <input type="text" name="name-search" id="name-search">
-            <input type="button" value="Cerca">
+            <div id="upper-search">
 
-            <fieldset id="date-fieldset">
-                <legend>Intervallo date</legend>
-
-                <label for="data-inizio">Inizio:</label>
-                <input type="date" name="data-inizio" id="data-inizio">
-
-                <label for="data-fine">Fine:</label>
-                <input type="date" name="data-fine" id="data-fine">
-            </fieldset>
+                <button id="filtri-btn" class="searchbar-btn">Filtri</button>
+    
+                <div id="search-input">
+                    <input type="text" name="name-search" id="name-search" placeholder="Cerca qui gli eventi" size="40">
+                    <button type="submit" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
             
 
             <fieldset id="filter-fieldset">
-                <legend>Filtri</legend>
+                <div>
+                    <div id="date-fields">
+                        <h3>Intervallo date</h3>
 
-                <div id="selected-filter">
-                    <span>Tag selezionati</span>
-                
-                </div>
+                        <div>
+                            <label for="data-inizio">Inizio:</label>
+                            <input type="date" name="data-inizio" id="data-inizio">
+                        </div>
 
-                <div id="filter-choice">
-                    <span>Seleziona tag</span>
+                        <div>
+                            <label for="data-fine">Fine:</label>
+                            <input type="date" name="data-fine" id="data-fine">
+                        </div>
+                    </div>
+
+                    <div id="filters">
+                        <div id="selected-filter">
+                            <h3>Tag selezionati</h3>
                         
+                        </div>
+        
+                        <div id="filter-choice">
+                            <h3>Seleziona tag</h3>
+                            <span class="event-tag">Jazz Classico</span>
+                            <span class="event-tag">Jazz Moderno</span>
+                            <span class="event-tag">Gipsy Jazz</span>
+                            <span class="event-tag">Blues</span>
+                        </div>
+                    </div>
                 </div>
 
-                <input type="submit" value="submit">
-                <input type="reset">
+                <input type="submit" value="Applica Filtri" class="searchbar-btn">
+                <input type="reset" class="searchbar-btn">
             </fieldset>
         </form>
     </div>
