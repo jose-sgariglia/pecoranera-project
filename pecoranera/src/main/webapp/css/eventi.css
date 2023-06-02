@@ -57,17 +57,7 @@ h1,h2{
 }
 
 .upcoming-event h2{
-    text-shadow:
-    -1px -1px 0 #000,
-     0   -1px 0 #000,
-     1px -1px 0 #000,
-     1px  0   0 #000,
-     1px  1px 0 #000,
-     0    1px 0 #000,
-    -1px  1px 0 #000,
-    -1px  0   0 #000,
-     0 0 10px #000,
-     0 0 5px #000;
+    text-shadow: var(--stroke);
     margin: 0;
     padding-left: 1rem;
     font-size: 2rem;
@@ -78,6 +68,7 @@ h1,h2{
 }
 
 .event-tag{
+    display: inline-block;
     background-color: var(--page-background);
     border-radius: 20px;
     font-family: var(--main-font);
@@ -139,9 +130,33 @@ h1,h2{
 #searchbar{
     width: 100vw;
     background-color: var(--dark-background);
+    margin-bottom: calc(2rem + 5vh);
+    z-index: 3;
+    transition: .5s;
 }
 
-#searchbar .event-tag{
+#searchbar.sticky{
+    position: fixed;
+}
+
+.filter-tag{
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+    font-family: var(--main-font);
+    font-size: 1.1rem;
+    padding: .5rem .75rem;
+    text-decoration: none;
+    transition: .5s ease-out;
+    background-color: var(--page-background);
+    color: var(--main-color);
+    margin-right: .5rem;
+    margin-bottom: 1rem;
+}
+
+.filter-tag:hover{
     background-color: var(--main-color);
     color: var(--page-background);
 }
@@ -152,8 +167,9 @@ h1,h2{
     flex-direction: row;
     justify-content: start;
     padding: 1rem 10vw 1rem 5vw;
+    border: 1px solid black;
     box-sizing: border-box;
-    box-shadow: 0 .5rem 10px black;
+    box-shadow: 0 .5rem 10px black, 0 -.25rem 10px var(--dark-background);
 }
 
 #filtri-btn{
@@ -170,9 +186,9 @@ h1,h2{
     transition: .5s ease-out;
 }
 
-#filtri-btn:hover, #filtri-btn:focus{
-    background-color: var(--main-color);
-    color: var(--page-background);
+#filtri-btn:hover, #filtri-btn:focus, #filtri-btn.active{
+    background-color: var(--main-color) !important;
+    color: var(--page-background) !important;
 }
 
 #search-input{
@@ -221,6 +237,7 @@ input[type="date"]{
     background-color: transparent;
     color: var(--main-color);
     font-size: 1.1rem;
+    padding: .25rem;
     color-scheme: dark;
     margin-bottom: 1.5rem;
 }
@@ -235,12 +252,16 @@ input[type="date"]{
 }
 
 #filter-fieldset{
+    max-height: 60vh;
     margin: 0;
     border: none;
+    padding: .5rem 1rem 1.5rem 1rem;
     box-shadow: 0 .5rem 10px black;
 }
 
-#filter-fieldset>div{
+#filter-fieldset>div:first-child{
+    margin-bottom: 2.5rem;
+    max-height: 80%;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -257,12 +278,95 @@ input[type="date"]{
     padding-right: .5rem;
 }
 
+#date-fields{
+    height: calc(27vh + 6rem);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#filter-choice{
+    flex-wrap: wrap;
+}
+
 #filters{
+    overflow-y: scroll;
+    height: inherit;
     width: 60vw;
 }
 
-#filters .event-tag{
-    margin-left: .2rem;
-    margin-right: .2rem;
+#form-buttons{
+    width: fit-content;
+    margin-left: 10vw;
+    margin-right: auto;
+}
+
+input[type=submit], input[type=reset]{
+    font-size: 1.2rem;
+    font-family: var(--main-font);
+    outline: none;
+    border-radius: 10px;
+    padding: .35rem .55rem;
+    margin-right: 3rem;
     cursor: pointer;
+    transition: .5s ease-out;
+}
+
+input[type=submit], input[type=reset]:hover, input[type=reset]:focus{
+    border: 1px solid transparent;
+    color: var(--page-background);
+    background-color: var(--main-color);
+}
+
+input[type=reset]{
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    background-color: var(--page-background);
+}
+
+input[type=submit]:hover, input[type=submit]:focus{
+    box-shadow: 0 0 0px 2px var(--page-background), 0 0 0px 3px white;
+}
+
+#all-events{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.small-event{
+    background-color: black;
+    background: url(../images/tizia123.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-top: calc(15rem/4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25.5vw;
+    height: 15rem;
+    color: var(--main-color);
+    text-decoration: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-bottom: 5rem;
+}
+
+.small-event h2{
+    text-shadow: var(--stroke);
+    font-size: 1.8rem;
+    padding-top: 1rem;
+    margin: 0;
+    margin-left: 1rem;
+    transition: .5s ease-out;
+}
+
+.small-event div{
+    transition: .5s ease-out;
+}
+
+.small-event:hover h2, .small-event:hover div,
+.small-event:focus h2, .small-event:focus div{
+    opacity: .5;
 }

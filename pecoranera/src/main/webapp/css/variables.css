@@ -7,6 +7,17 @@
     --dark-background: #121212;
     --neon-color: #DEAADB;
     --neon-light: #8332AC;
+
+    --stroke:-1px -1px 0 #000,
+    0   -1px 0 #000,
+    1px -1px 0 #000,
+    1px  0   0 #000,
+    1px  1px 0 #000,
+    0    1px 0 #000,
+   -1px  1px 0 #000,
+   -1px  0   0 #000,
+    0 0 10px #000,
+    0 0 5px #000;
     
     --header-font: "Advent Pro", sans-serif;
     --main-font: "Lato", sans-serif;

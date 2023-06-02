@@ -55,7 +55,7 @@
     </section>
 
     <div id="searchbar">
-        <form action="">
+        <!--<form action="">-->
             <div id="upper-search">
 
                 <button id="filtri-btn" class="searchbar-btn">Filtri</button>
@@ -85,28 +85,71 @@
 
                     <div id="filters">
                         <div id="selected-filter">
-                            <h3>Tag selezionati</h3>
-                        
+                            <h3>Generi selezionati</h3>
+                            
+                            <div></div>
                         </div>
         
                         <div id="filter-choice">
-                            <h3>Seleziona tag</h3>
-                            <span class="event-tag">Jazz Classico</span>
-                            <span class="event-tag">Jazz Moderno</span>
-                            <span class="event-tag">Gipsy Jazz</span>
-                            <span class="event-tag">Blues</span>
+                            <h3>Seleziona genere</h3>
+                            
+                            <div></div>
                         </div>
                     </div>
                 </div>
 
-                <input type="submit" value="Applica Filtri" class="searchbar-btn">
-                <input type="reset" class="searchbar-btn">
+                <div id="form-buttons">
+                    <input type="submit" value="Applica Filtri" class="searchbar-btn">
+                    <input type="reset" class="searchbar-btn">
+                </div>
             </fieldset>
-        </form>
+       <!-- </form>-->
     </div>
 
     <section id="all-events">
+        <a class="small-event" href="">
+                <h2>Tizio Caio Quartet</h2>
 
+                <div class="tags">
+                    <span class="event-tag">Blues</span>
+                    <span class="event-tag">Gipsy Jazz</span>
+                </div>
+
+                <div class="event-date">Venerd&igrave; 2 Giugno</div>
+        </a>
+
+        <a class="small-event" href="">
+            <h2>Tizio Caio Quartet</h2>
+
+            <div class="tags">
+                <span class="event-tag">Blues</span>
+                <span class="event-tag">Gipsy Jazz</span>
+            </div>
+
+            <div class="event-date">Venerd&igrave; 2 Giugno</div>
+        </a>
+
+        <a class="small-event" href="">
+            <h2>Tizio Caio Quartet</h2>
+
+            <div class="tags">
+                <span class="event-tag">Blues</span>
+                <span class="event-tag">Gipsy Jazz</span>
+            </div>
+
+            <div class="event-date">Venerd&igrave; 2 Giugno</div>
+        </a>
+
+        <a class="small-event" href="">
+            <h2>Tizio Caio Quartet</h2>
+
+            <div class="tags">
+                <span class="event-tag">Blues</span>
+                <span class="event-tag">Gipsy Jazz</span>
+            </div>
+
+            <div class="event-date">Venerd&igrave; 2 Giugno</div>
+        </a>
     </section>
 
     <jsp:include page="./assets/footer.jsp"></jsp:include>
