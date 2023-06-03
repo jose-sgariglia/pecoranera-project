@@ -109,6 +109,7 @@ h1,h2{
     padding: 1rem;
     font-family: var(--main-font);
     background-color: var(--neon-light);
+    border-right: 2px solid var(--neon-light);
     width: fit-content;
     position: relative;
 }
@@ -132,11 +133,12 @@ h1,h2{
     background-color: var(--dark-background);
     margin-bottom: calc(2rem + 5vh);
     z-index: 3;
+    position: sticky;
     transition: .5s;
 }
 
 #searchbar.sticky{
-    position: fixed;
+    position: fixed !important;
 }
 
 .filter-tag{
@@ -177,6 +179,7 @@ h1,h2{
     font-family: var(--main-font);
     color: var(--main-color);
     outline: none;
+    width: fit-content;
     background-color: var(--page-background);
     border: 1px solid var(--main-color);
     border-radius: 10px;
@@ -252,7 +255,11 @@ input[type="date"]{
 }
 
 #filter-fieldset{
+    position: absolute;
+    background-color: inherit;
+    width: 100vw;
     max-height: 60vh;
+    box-sizing: border-box;
     margin: 0;
     border: none;
     padding: .5rem 1rem 1.5rem 1rem;
@@ -369,4 +376,56 @@ input[type=submit]:hover, input[type=submit]:focus{
 .small-event:hover h2, .small-event:hover div,
 .small-event:focus h2, .small-event:focus div{
     opacity: .5;
+}
+
+@media only screen and (max-width: 600px){
+    #upcoming>div{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 35rem;
+    }
+
+    .upcoming-event{
+        width: 80vw;
+        height: 15rem;
+    }
+
+    .upcoming-event>div{
+        padding-top: calc(15rem/4);
+    }
+
+    .upcoming-event>img{
+        -webkit-filter: none; 
+        -webkit-filter: none; 
+        -moz-filter: none;
+        filter: none;
+    }
+
+    .event-tag{
+        font-size: .9rem;
+    }
+
+    #filters{
+        width: 50vw;
+    }
+    
+    #upper-search{
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+
+    #search-input{
+        width: 80vw;
+        margin-bottom: 1rem;
+    }
+
+    #filtri-btn{
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    .small-event{
+        width: 80vw;
+    }
 }
