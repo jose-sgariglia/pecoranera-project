@@ -1,0 +1,15 @@
+@import "variables.css";
+
+html, body{
+    min-height: 100vh;
+    background-color: var(--page-background);
+    color: var(--main-color);
+}
+
+#side-nav{
+    width: 20rem;
+    height: 100vh;
+    padding-top: var(--nav-height);
+    box-sizing: border-box;
+    background-color: var(--dark-background);
+}

@@ -33,10 +33,7 @@ $(document).ready(function(){
             success: function(data) {
      
                $.each(data, function(key, val) {
-     
-                    // tagElements.push('<span id="' + key + '" class="filter-tag unselected">' + val + '</span>');    
                     tags.push({"key": key, "value": val});
-     
                });
      
                tags.forEach(element => {
@@ -44,6 +41,7 @@ $(document).ready(function(){
                });
      
             },
+            
            statusCode: {
               404: function() {
                 alert('Errore, json file non trovato');
@@ -89,15 +87,11 @@ $(document).ready(function(){
     let moveToListAndSort = function(source, target, isSelected) {
         
         $(source).on('click', '.filter-tag', function() {
-            //let element;
 
             if(isSelected){
-                //element = tags.splice(tags.map(e => e.key).indexOf($(this).attr("id")), 1)[0];
                 selectedTags.push($(this).attr("id"));
             } else {
                 selectedTags.splice(selectedTags.map(e => e.key).indexOf($(this).attr("id")), 1);
-                // element = selectedTags.splice(selectedTags.map(e => e.key).indexOf($(this).attr("id")), 1);
-                //tags.push(element);
             }
             
             $(this).remove();

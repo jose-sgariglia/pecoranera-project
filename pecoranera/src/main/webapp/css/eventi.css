@@ -378,6 +378,24 @@ input[type=submit]:hover, input[type=submit]:focus{
     opacity: .5;
 }
 
+@media screen and (max-aspect-ratio: 3/2) {
+    #upcoming>div{
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 45rem;
+    }
+
+    .upcoming-event{
+        width: 70vw;
+        height: 20rem;
+    }
+
+    .small-event{
+        width: 45vw;
+    }
+}
+
 @media only screen and (max-width: 600px){
     #upcoming>div{
         flex-direction: column;

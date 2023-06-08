@@ -159,7 +159,13 @@ nav ul li{
     grid-column-start: 3;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-aspect-ratio: 3/2){
+    #nav-icons{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and ((max-width: 600px) or (max-aspect-ratio: 1)){
 
     body{
         --button-bar-size: calc(var(--nav-height) / 8);

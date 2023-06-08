@@ -13,10 +13,31 @@
 </head>
 <body>
     <jsp:include page="./assets/navbar.jsp">
-        <jsp:param name="active_page" value="eventi" />
+        <jsp:param name="active_page" value="menu" />
     </jsp:include>
 
-    
+    <div id="category-selection">
+        <label for="category-select">Sfoglia:</label>
+        <select name="category-select" id="category-select">
+            <option value="birre">Birre</option>
+            <option value="vini">Vini</option>
+            <option value="panini">Panini</option>
+        </select>
+
+        <a href="#birre" class="category-link">Birre</a>
+        <a href="#vini" class="category-link">Vini</a>
+        <a href="#panini" class="category-link">Panini</a>
+    </div>
+
+    <section id="product-section">
+        <div>
+
+        </div>
+    </section>
+
+    <button id="scroll-up">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
 
     <jsp:include page="./assets/footer.jsp"></jsp:include>
 </body>
