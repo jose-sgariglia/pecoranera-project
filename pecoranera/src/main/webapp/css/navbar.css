@@ -159,6 +159,31 @@ nav ul li{
     grid-column-start: 3;
 }
 
+/*LOGIN FORM*/
+
+#login-wrapper{
+    position: fixed;
+    top: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    perspective: 1000px;
+    z-index: 4;
+    width: fit-content;
+    padding: .5rem;
+}
+
+#login-wrapper::before{
+    content: "";
+    display: block;
+    top: -100vh;
+    left: -100vw;
+    position: absolute;
+    width: 250vw;
+    height: 250vh;
+    background-color: rgba(0,0,0, .25);
+    backdrop-filter: blur(5px);
+}
+
 @media screen and (max-aspect-ratio: 3/2){
     #nav-icons{
         grid-template-columns: repeat(3, 1fr);

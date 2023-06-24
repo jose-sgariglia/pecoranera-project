@@ -14,7 +14,7 @@ $(document).ready(function(){
     let filterBar = $("#filter-fieldset");
     filterBar.slideUp();
 
-    //TODO:
+    //TODO once db is connected:
     /*
     *   Condition, if mobile reduce pagination to 1/3 of total results
     */

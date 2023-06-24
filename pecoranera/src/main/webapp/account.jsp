@@ -18,10 +18,29 @@
 
     <section id="profile-section">
         <div id="side-nav">
-            <a href="#"></a>
-            <a href=""></a>
-            <a href=""></a>
-            <a href=""></a>
+            <a href="#panoramica" class="account-link">Panoramica</a>
+            <a href="#ordini" class="account-link">Ordini</a>
+            <a href="#preferenze" class="account-link">Preferenze</a>
+            <a href="#dati" class="account-link">Dati Personali</a>
+            <a href="index.jsp" class="account-link">Esci</a>
+        </div>
+
+        <div id="display-data">
+            <section id="panoramica">
+                <h2 class="page-header">Edmundo Peli</h2>
+
+                <div>
+                    <h3></h3>
+                </div>
+            </section>
+
+            <section id="ordini">
+                <p>ORDINI</p>
+            </section>
+
+            <section id="preferenze">
+                <p>PREFERENZE</p>
+            </section>
         </div>
     </section>
 

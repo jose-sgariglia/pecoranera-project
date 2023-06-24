@@ -8,7 +8,7 @@ $(document).ready(function() {
 
         sidebar.toggleClass('closed');
 
-        outsideClose.toggleClass('closed')
+        outsideClose.toggleClass('closed');
     })
     
     $(window).scroll(function() {
@@ -21,6 +21,36 @@ $(document).ready(function() {
             }
         }
         
+    });
+
+    $(".nav-links[href='account.jsp']").on("click", function(e){
+        e.preventDefault();
+
+        if(true){ //CHECK IF NOT LOGGED IN
+            $("#login-wrapper").toggle();
+
+            if(!$("#form-wrapper").length){
+                $("#login-wrapper").load('assets/login.html');
+            }
+
+            navbarBtn.removeClass('open');
+
+            sidebar.addClass('closed');
+
+            outsideClose.addClass('closed')
+        }
+        
+        else{
+            $(location).attr('href', "account.jsp");
+        }
+        
+        // $.ajax({
+        //     type: "POST",
+        //     url: "assets/login.html",
+        //     success: function(responseText) {
+        //         $('body').load(responseText); 
+        //     }
+        // });
     });
 
 });

@@ -32,11 +32,24 @@
                     <li><a href="menu.jsp" class="nav-links ${param.active_page == 'menu'  ? 'active_link' : ''}">MENU</a></li>
                     <li><a href="info.jsp" class="nav-links ${param.active_page == 'info'  ? 'active_link' : ''}"><span>INFO</span></a></li>
                     <li id="nav-icons">
-                        <a href="account.jsp" class="nav-links ${param.active_page == 'account'  ? 'active_link' : ''}"><i class="fa-regular fa-circle-user"></i></a>
+                        <a href="account.jsp" class="nav-links ${param.active_page == 'account'  ? 'active_link' : ''}">a<i class="fa-regular fa-circle-user"></i></a>
                         <a href="carrello.jsp" class="nav-links ${param.active_page == 'carrello'  ? 'active_link' : ''}"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>   
                 </ul>
             </div>
         </nav>
+
+        <%-- CHECK IF NOT LOGGED IN --%>
+        <% 
+            String uri = request.getRequestURI();
+
+            String currentPage = uri.substring(uri.lastIndexOf("/")+1);
+
+            if(!currentPage.equals("signup.jsp") && true){
+
+                out.print("<div id='login-wrapper' style='display: none;'></div>");
+        
+            }
+        %>
     </body>
 </html>
