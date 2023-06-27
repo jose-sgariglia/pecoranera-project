@@ -1,9 +1,7 @@
+import {loadTags, moveToListAndSort, resetTags} from "./modules/eventTagManager.js";
+
 $(document).ready(function(){
-
-    let tags = [];
-    let selectedTags = [];
-    //let unselectedTags = [];
-
+    
     let navBarHeight = $("nav").outerHeight();
     let searchBar = $("#searchbar");
 
@@ -13,42 +11,11 @@ $(document).ready(function(){
     let filterButton = $("#filtri-btn")
     let filterBar = $("#filter-fieldset");
     filterBar.slideUp();
-
-    //TODO once db is connected:
-    /*
-    *   Condition, if mobile reduce pagination to 1/3 of total results
-    */
-
-    //tagsValues to HTML element
-    function tagsToHtml(el, selected) {
-        return `<span id="${el.key}" class="filter-tag">${el.value}</span>`;
-    }
-
-
-    //Loadtags with ajax
-    $(window).on("load", function(){
-        $.ajax({
-            url: 'assets/tags.json',
-            dataType: 'json',
-            success: function(data) {
-     
-               $.each(data, function(key, val) {
-                    tags.push({"key": key, "value": val});
-               });
-     
-               tags.forEach(element => {
-                    $("#filter-choice div").append(tagsToHtml(element, false));
-               });
-     
-            },
-            
-           statusCode: {
-              404: function() {
-                alert('Errore, json file non trovato');
-              }
-            }
-         });
-    });
+    
+    loadTags($(window));
+    moveToListAndSort("#selected-filter div", "#filter-choice div", false);
+    moveToListAndSort("#filter-choice div", "#selected-filter div", true);
+    resetTags($("input[type=reset]"), $("#selected-filter div"), $("#filter-choice div"))
 
     //toggle filterbar
     filterButton.on("click", function(){
@@ -56,7 +23,7 @@ $(document).ready(function(){
         filterBar.slideToggle(700);
     });
 
-    //prevent form distribution
+    //prevent form submission
     $(window).submit(function(e){
         e.preventDefault();
     });
@@ -83,66 +50,4 @@ $(document).ready(function(){
         }
     
     });
-
-    let moveToListAndSort = function(source, target, isSelected) {
-        
-        $(source).on('click', '.filter-tag', function() {
-
-            if(isSelected){
-                selectedTags.push($(this).attr("id"));
-            } else {
-                selectedTags.splice(selectedTags.map(e => e.key).indexOf($(this).attr("id")), 1);
-            }
-            
-            $(this).remove();
-    
-            $(target).append($(this));
-    
-            $(target).children('.filter-tag').detach().sort(function(a, b) {
-                let valueA = parseInt(a.getAttribute("id"));
-                let valueB = parseInt(b.getAttribute("id"));
-              
-                if (valueA > valueB) {
-                    return 1;
-                }
-        
-                if (valueA < valueB) {
-                    return -1;
-                }
-              
-                return 0;
-            }).appendTo(target);
-        });
-
-
-    };
-
-
-    $("input[type=reset]").on("click", function(){
-        selectedTags.length = 0;
-
-        $("#selected-filter div").children('.filter-tag').each(function(){
-            $(this).remove;
-
-            $("#filter-choice div").append($(this));
-
-            $("#filter-choice div").children('.filter-tag').detach().sort(function(a, b) {
-                let valueA = parseInt(a.getAttribute("id"));
-                let valueB = parseInt(b.getAttribute("id"));
-              
-                if (valueA > valueB) {
-                    return 1;
-                }
-        
-                if (valueA < valueB) {
-                    return -1;
-                }
-              
-                return 0;
-            }).appendTo($("#filter-choice div"));
-        })
-    });
-
-    moveToListAndSort("#selected-filter div", "#filter-choice div", false);
-    moveToListAndSort("#filter-choice div", "#selected-filter div", true);
 });

@@ -10,6 +10,19 @@ body{
     height: calc(var(--nav-height) + 8vh);
 }
 
+#goback-link{
+    color: var(--neon-light);
+    font-size: 1.1rem;
+    font-family: var(--main-font);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: .5s ease;
+}
+
+#goback-link:hover, #goback-link:focus{
+    color: var(--neon-color);
+}
+
 #registration h2{
     font-family: var(--header-font);
     font-size: 2.25rem;
@@ -17,6 +30,7 @@ body{
     color: var(--neon-color);
     text-shadow: var(--neon-effect);
     margin: 0;
+    margin-bottom: 1rem;
 }
 
 #registration-form{
@@ -114,10 +128,36 @@ input[type=submit]{
     margin-left: auto;
     margin-right: auto;
     transition: color .5s ease, background-color .5s ease;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 label{
     font-family: var(--header-font);
     font-size: 1.1rem;
     color: var(--neon-light);
+}
+
+#loading-wheel{
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40vh;
+    padding: 3.5rem;
+    border-radius: 30px;
+    background-color: var(--dark-background);
+    z-index: 3;
+}
+
+#loading-wheel-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    background-color: rgba(0,0,0, 0.25);
+    backdrop-filter: blur(5px);
+    z-index: 2;
 }

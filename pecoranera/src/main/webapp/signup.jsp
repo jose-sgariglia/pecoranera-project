@@ -9,7 +9,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
-    <script src="${pageContext.request.contextPath}/scripts/signup.js"></script>
+    <script src="${pageContext.request.contextPath}/scripts/signup.js" charset="utf-8"></script>
 </head>
 <body>
     <jsp:include page="./assets/navbar.jsp">
@@ -19,9 +19,9 @@
     <div id="nav-spacer"></div>
 
     <section id="registration">
-        <a id="goback-link" href="index.jsp"><i class="fa-solid fa-arrow-left"></i>Torna alla home</a>
+        <a id="goback-link" href="index.jsp"><i class="fa-solid fa-arrow-left"></i> Torna alla home</a>
         <h2>Registrazione</h2>
-        <form id="registration-form" action="">
+        <form id="registration-form" method="post" action="">
             <div id="name-fields">
                <div>
                     <label for="name">Nome</label>
@@ -66,14 +66,20 @@
                     <div id="see-confpassword"><i class="fa-regular fa-eye fa-eye-slash"></i></div>
                 </div>
 
-                <span>Le password non corrispondono <i class="fa-solid fa-xmark"></i></span>
+                <span class="valid">Le password corrispondono <i class="fa-solid fa-check"></i></span>
             </div>
 
-            <input type="submit" value="Registrati">
+            <input id="submit" type="submit" value="Registrati">
         </form>
     </section>
 
-    <section id="preferences">
+    <div id="loading-wheel-wrapper" style="display: none;">
+        <div id="loading-wheel">
+
+        </div>
+    </div>
+
+    <section id="registration-submitted">
         
     </section>
     

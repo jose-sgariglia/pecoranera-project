@@ -9,7 +9,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
-    <script src="${pageContext.request.contextPath}/scripts/eventi.js"></script>
+    <script type="module" src="${pageContext.request.contextPath}/scripts/eventi.js"></script>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
         <h1>Prossimi Eventi</h1>
 
         <div>
-            <a class="upcoming-event" href="">
+            <a class="upcoming-event" href="event_details.jsp?id=1">
                 <img src="${pageContext.request.contextPath}/images/lellopetrarca.jpg" alt="">
 
                <div>
@@ -36,7 +36,7 @@
                </div>
             </a>
 
-            <a class="upcoming-event" href="">
+            <a class="upcoming-event" href="event_details.jsp?id=2">
                 <img src="${pageContext.request.contextPath}/images/tizia123.jpg" alt="" />
 
                 <div>
@@ -107,7 +107,7 @@
     </div>
 
     <section id="all-events">
-        <a class="small-event" href="">
+        <a class="small-event" href="event_details.jsp?id=3">
                 <h2>Tizio Caio Quartet</h2>
 
                 <div class="tags">
@@ -118,7 +118,7 @@
                 <div class="event-date">Venerd&igrave; 2 Giugno</div>
         </a>
 
-        <a class="small-event" href="">
+        <a class="small-event" href="event_details.jsp?id=4">
             <h2>Tizio Caio Quartet</h2>
 
             <div class="tags">
@@ -129,7 +129,7 @@
             <div class="event-date">Venerd&igrave; 2 Giugno</div>
         </a>
 
-        <a class="small-event" href="">
+        <a class="small-event" href="event_details.jsp?id=5">
             <h2>Tizio Caio Quartet</h2>
 
             <div class="tags">
@@ -140,7 +140,7 @@
             <div class="event-date">Venerd&igrave; 2 Giugno</div>
         </a>
 
-        <a class="small-event" href="">
+        <a class="small-event" href="event_details.jsp?id=6">
             <h2>Tizio Caio Quartet</h2>
 
             <div class="tags">

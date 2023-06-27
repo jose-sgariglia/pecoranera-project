@@ -13,14 +13,36 @@ $(document).ready(function(){
         checkSpecial = false,
         arePasswordMatching = false;
 
+    let loadingWheel = $("#loading-wheel-wrapper");
+
     //TO DO: AJAX CALL TO SIGNUP
-    //After registration preference selection
-    $("registration-form").on("submit", function(e){
+    //After registration success/failure
+    $("#registration-form").on("submit", async function(e){
         e.preventDefault();
 
-        $("#registration").hide();
-        $("#preferences").show();
-    })
+        if(checkLength && checkLower && checkUpper && checkNumber && checkSpecial){
+            if(arePasswordMatching){
+                //Check if account doesn't exist
+                if($("#email").val() == "null@null.com"){
+                    alert("Questa mail è già collegata ad un account");
+
+                } else {
+                    loadingWheel.fadeIn(500);
+                    loadingWheel.children().first().load("./assets/loading-wheel.html");
+                    /*$("#registration").hide();
+                    $("#registration-submitted").show();*/
+                    await new Promise(r => setTimeout(r, 2000));
+                    window.location.href = `confirm-email.jsp`;
+                }
+            }
+
+            else {
+                alert("Le password non corrispondono");
+            }
+        } else {
+            alert("La password scelta non è molto sicura!");
+        }
+    });
 
     //Click on eye(s) to show passwords
     let showPassword = function(source) {
@@ -67,12 +89,14 @@ $(document).ready(function(){
             checkMark.addClass("fa-xmark");
             checkMark.removeClass("fa-check");
 
+            confPass.html(confPass.html().replace("Le password corrispondono ", "Le password non corrispondono "))
             return false;
         } else {
             confPass.addClass("valid");
             checkMark.removeClass("fa-xmark");
             checkMark.addClass("fa-check");
 
+            confPass.html(confPass.html().replace("Le password non corrispondono ", "Le password corrispondono "))
             return true;
         }
     }
@@ -122,4 +146,6 @@ $(document).ready(function(){
     $("#confirm-password").on("input", function(){
         arePasswordMatching = checkPasswordMatch();
     });
+
+
 });
